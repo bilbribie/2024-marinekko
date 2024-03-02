@@ -1,0 +1,27 @@
+/* App.css */
+.App {
+    text-align: center;
+    background-color: #f7f7f7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: black;
+  }
+  
+  h1 {
+    color: #4a54f1; /* A nice shade of blue */
+    padding: 0.5em;
+    margin: 0;
+    font-size: 2.5em; /* Adjust the size as you like */
+  }
+  
+  h2 {
+    color: #fc5185; /* A soft pink */
+    padding: 0.25em;
+    margin: 0;
+    font-size: 2em; /* Adjust the size as you like */
+  }
+  
