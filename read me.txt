@@ -1,0 +1,6 @@
+npm install -g create-react-app
+create-react-app marinekko
+
+cd C:\Users\Beebie\Documents\git\2024-marinekko\marinekko
+npm start
+
