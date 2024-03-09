@@ -2,6 +2,7 @@ import React from 'react';
 import Nav1 from '../components/nav1';
 import Footer from '../components/footer';
 import { Link, useNavigate } from 'react-router-dom';
+import './style/home.css';
 
 function Home() {
   const navigate = useNavigate();
