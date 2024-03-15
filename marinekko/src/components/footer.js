@@ -25,7 +25,7 @@ function Footer() {
           <div class = "verticalSeperator">
             <div class="vr"></div>
           </div>
-
+          
           <section class = "container">
             <article>My account</article>
             <div class = "link">
