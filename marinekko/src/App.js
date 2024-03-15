@@ -11,11 +11,16 @@ import AddAdmin from './pages/addadmin';
 import AddProduct from './pages/addproduct';
 import EditAdmin from './pages/editadmin';
 import EditProduct from './pages/editproduct';
+import bag1 from './pages/bag';
+
+
+
 
 function App() {
   return (
     <Router>
       <Routes>
+        
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/ourteam" element={<OurTeam />} />
@@ -27,6 +32,8 @@ function App() {
         <Route path="/addproduct" element={<AddProduct />} />
         <Route path="/editadmin" element={<EditAdmin />} />
         <Route path="/editproduct" element={<EditProduct />} />
+        <Route path="/bag" element={<bag />} />
+        
         
       </Routes>
     </Router>
