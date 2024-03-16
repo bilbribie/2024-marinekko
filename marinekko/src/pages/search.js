@@ -79,6 +79,7 @@ function ProductManage() {
     setCurrentPage((prev) => prev - 1);
   }
 
+  //test data
   let bagsArray = [{name : "Bag1", catagory : "Tota Bag", price : 2000, img : process.env.PUBLIC_URL + "/assets/bagSample1.jpg"},
                           {name : "Bag2", catagory : "Tota Bag", price : 2100, img : process.env.PUBLIC_URL + "/assets/bagSample2.jpg"},
                           {name : "Bag3", catagory : "Shoulder Bag", price : 2200, img : process.env.PUBLIC_URL + "/assets/bagSample1.jpg"},
@@ -100,9 +101,10 @@ function ProductManage() {
                           {name : "Bag19", catagory : "Tota Bag", price : 2100, img : process.env.PUBLIC_URL + "/assets/bagSample2.jpg"}
                         ]
 
-  
+  //test data
   let catagoriesArray = ["Tote bag","Shoulder Bag","Backpack","Handbag","Wallet"]
 
+  //test data
   let colorsArray = ["Blue","Green","Red","Black","White","Purple","Yellow","Brown","Gray","Pink"
                       ,"Orange","Magenta","Teal"]
 

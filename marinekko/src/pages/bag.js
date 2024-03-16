@@ -3,7 +3,7 @@ import Nav1 from '../components/nav1';
 import Footer from '../components/footer';
 import './style/bag.css'
 
-function bag(){
+function Bag(){
     return (
         <div>
             <Nav1></Nav1>
@@ -15,4 +15,4 @@ function bag(){
 
 }
 
-export default bag;
+export default Bag;
