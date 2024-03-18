@@ -1,5 +1,6 @@
 import React from 'react';
-import './style/recommend.css';
+import './com_style/recommend.css';
+import { Link } from 'react-router-dom';
 
 function Recommend(prop){
 

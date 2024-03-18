@@ -1,5 +1,6 @@
 import React from 'react';
 import Nav1 from '../components/nav1';
+import Header from '../components/header';
 import Footer from '../components/footer';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -16,6 +17,7 @@ function OurTeam() {
   
     return (
       <div>
+        <Header />
         <Nav1 />
         <div className="ourteam">
             <img src={`${process.env.PUBLIC_URL}/assets/group-chat.png`} alt="ourteamicon" />

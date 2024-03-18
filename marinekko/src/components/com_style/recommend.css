@@ -1,38 +1,53 @@
 
 .component-container{
 
+    .recommended-container{
+
+        /* background-color: green; */
+        width: auto;
+        height: 430px;
+        height: calc(0.4 * (100vw - 80px));
+        margin-top: 20px;
+        margin-left: 40px;
+        margin-right: 40px;
+        display: flex;
+        justify-content: space-evenly;
+        margin-bottom: 30px;
+    
+    }
+
     .recommended-bag-container{
         width: 24%;
-        /* background-color: grey; */
+        height: 100%;
+        background-color: rgb(232, 14, 14);
     
         .img-container{
             border: solid pink;
             border-width: 1%;
             width: 100%;
-            height: 320px;
+            height: 70%;
             background-color: aqua;
         }
     
         .description-container{
             padding-left: 10px;
-            width: auto;
-            height: 110px;
+            width: 100%;
+            height: 30%;
             display: flex;
             flex-flow: column;
             align-items: flex-start;
+            justify-content: center;
             background-color: rgb(243, 241, 241);
+
             .name{
                 /* background-color: aquamarine; */
-                margin-top: 5px;
                 font-size: 25px;
             }
             .catagory{
-                margin-top: 5px;
                 /* background-color: yellow; */
                 color : rgb(142, 140, 140);
             }
             .price{
-                margin-top: 10px;
                 /* background-color: blueviolet; */
                 color : rgb(198, 133, 144);
             }

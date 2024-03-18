@@ -1,15 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './com_style/nav2.css';
+
 
 function Nav2() {
-  return (
-    <nav>
-      <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="Logo" />
-      <Link to="/login">Login</Link>
-      <Link to="/">Home</Link>
-      <Link to="/search">Search</Link>
-      <Link to="/ourteam">Our Team</Link>
-    </nav>
+
+  
+  
+    return (
+    
+    <div class="nav2">
+
+      <Link class="NoDecorate" to="/">HOME</Link> 
+      <div class="seperator">|</div>
+      <Link class="NoDecorate" to="/search">BAG</Link> 
+      {/* <Link class="NoDecorate" to={"/bag/" + JSON.stringify(nameObj)} >BAG</Link>  */}
+      <div class="seperator">|</div>
+      <Link class="NoDecorate" to="/ourteam">OUR TEAM</Link> 
+        
+    </div>
+
   );
 }
 

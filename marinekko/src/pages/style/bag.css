@@ -1,1 +1,144 @@
 
+.page-container{
+    width: 100%;
+    height: fit-content;
+    /* background-color: rgb(238, 10, 128); */
+    
+    .product-container{
+        padding-top: 10px; 
+        /* remove padding later */
+        margin: 20px;
+        width: auto;
+        height: 650px;
+        /* background-color: black; */
+        display: flex;
+
+        
+    }
+
+    .picture-container{
+        width: 50%;
+        height: 700px;
+        /* background-color: rgb(144, 213, 71); */
+        display : flex;
+        justify-content: flex-end;
+
+        .pictureList{
+            display: flex;
+            flex-flow: column;
+            height: fit-content;
+            width: 20%; /* 20% of width of .picture-container*/
+            /* background-color: rgb(32, 32, 136); */
+        }
+
+        .picture{
+            border : solid ;
+            border-radius: 0.1px;
+            width: 90%;
+            height : 100px;
+        }
+
+        .mainPicture{
+            border : solid ;
+            border-radius: 0.1px;
+            width: 70%; /* 70% of width of .picture-container*/
+            height : 600px;
+        }
+
+    }
+    
+    .description-container{
+        padding: 20px;
+        width: 50%;
+        height: 650px;
+        /* background-color: darkred; */
+        display: flex;
+        
+        flex-flow: column;
+        justify-content: flex-start;
+        row-gap: 10px;
+
+        .horizontal-seperator-description{
+            color: #da3481;
+            background-color: #da3481;
+            width: 100%;
+            height: 3px;
+        }
+
+        .catagory-container{
+            color: pink;
+        }
+
+        .name-container{
+            font-size: x-large;
+        }
+
+        .color-container{
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+            height: 35px;
+            background-color: pink;
+            border-radius: 20px;
+        }
+
+        .stock-section{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            div{
+                width: 30%;
+            }
+
+        }
+
+        .stock{
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .stock-container{
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40%;
+            height: 35px;
+            background-color: white;
+            border-color: black;
+            border: solid 0.1px; 
+            border-radius: 20px;
+        }
+
+        .info{
+            color : pink;
+        }
+
+
+    }
+
+    .horizontal-seperator-pink{
+        color: #da3481;
+        background-color: #da3481;
+        width: auto;
+        margin-left: 5%;
+        margin-right: 5%;
+        height: 3px;
+    }
+
+    .recommend-text{
+        font-size: 40px;
+        color: black;
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 40px;
+    }
+
+    
+}
+
+
+

@@ -6,28 +6,13 @@ import { UsernameContext } from '../pages/login';
 
 function Nav1() {
 
-  const user = useContext(UsernameContext);
   
-
-  return (
+  
+    return (
     
     <div class="nav1">
 
-      <div class = "logoLayer">
-        <div class = 'left'></div>
-        <div class = 'mid'>
-          <img class="logo" src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="Logo" />
-        </div>
-        <div class = 'right'>
-          {/* this is a button */}
-          <Link  to="/login">
-          <img class="login" src={`${process.env.PUBLIC_URL}/assets/user.png`} alt="Login" />
-          </Link> 
-        </div>
-      </div>
 
-
-    
       <div class="bar">
 
         <div class = "left">
@@ -35,8 +20,10 @@ function Nav1() {
             <Link class="NoDecorate" to="/">HOME</Link> 
             <div class="seperator">|</div>
             <Link class="NoDecorate" to="/search">BAG</Link> 
+            {/* <Link class="NoDecorate" to={"/bag/" + JSON.stringify(nameObj)} >BAG</Link>  */}
             <div class="seperator">|</div>
             <Link class="NoDecorate" to="/ourteam">OUR TEAM</Link> 
+            
         </div>
 
         <div class = "right">

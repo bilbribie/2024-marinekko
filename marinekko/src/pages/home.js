@@ -1,5 +1,7 @@
 import React from 'react';
 import Nav1 from '../components/nav1';
+import Header from '../components/header';
+import Recommend from '../components/recommend';
 import Footer from '../components/footer';
 import { Link, useNavigate } from 'react-router-dom';
 import './style/home.css';
@@ -30,7 +32,11 @@ function Home() {
   return (
 
     <div>
+      <Header />
       <Nav1 />
+
+      <div class = "page-container"> {/* page-container*/}
+
         <section class = "newCollectionBackground">
           <div class = "center">
             <div class = "t">
@@ -43,7 +49,6 @@ function Home() {
                 SHOP NOW
               </Link>
             </div>
-            
             
           </div>
         </section>
@@ -83,78 +88,20 @@ function Home() {
         
         <div class = "horizontal-seperator"></div>
 
+        
+
         <section class = "recommended-header-container">
             For you
         </section>
 
-        <section class = "recommended-container">
-          {recommendedArray.map((bag) => {return(
-            <div class = "recommended-bag-container">
-              <img src = {bag.img} class = "img-container">
+        <Recommend bagsArray = {recommendedArray}></Recommend>
 
-              </img>
-              <div class = "description-container">
-
-                <div class = "name">
-                  {bag.name}
-                </div>
-                <div class = "catagory">
-                  {bag.catagory}
-                </div>
-                <div class = "price">
-                  {"THB " + bag.price + ".00"}
-                </div>
-
-              </div>
-            </div>
-          )})}
-        </section>
-
+      </div> {/* page-container*/}
 
       <Footer />
     </div>
 
 
-    // <div>
-    //   <Nav1 />
-    //   <h1>New Collection 2024</h1>
-    //   <Link to="/search">SHOP NOW</Link>
-    //   <h5>-----------------------------------------------------</h5>
-    //   <h1>Catagories</h1>
-    //   <Link to="/search">See more</Link><br />
-    //   <Link to="/search">Tote Bag</Link><br />
-    //   <Link to="/search">Shoulder Bag</Link><br />
-    //   <Link to="/search">Backpack</Link><br />
-    //   <Link to="/search">Handbag</Link><br />
-    //   <Link to="/search">Wallet</Link><br />
-    //   <h5>-----------------------------------------------------</h5>
-    //   <h1>For you</h1>
-    //   <div className="product1" onClick={ProductClick}>
-    //     <img src={`${process.env.PUBLIC_URL}/assets/IMG_2023.jpg`} alt="product1" />
-    //       <h3>Mushroomy</h3>
-    //       <h4>Market bag</h4>
-    //       <h2>THB 2,890.00</h2>
-    //   </div>
-    //   <div className="product2" onClick={ProductClick}>
-    //     <img src={`${process.env.PUBLIC_URL}/assets/IMG_2023.jpg`} alt="product2" />
-    //       <h3>Mushroomy</h3>
-    //       <h4>Market bag</h4>
-    //       <h2>THB 2,890.00</h2>
-    //   </div>
-    //   <div className="product3" onClick={ProductClick}>
-    //     <img src={`${process.env.PUBLIC_URL}/assets/IMG_2023.jpg`} alt="product3" />
-    //       <h3>Mushroomy</h3>
-    //       <h4>Market bag</h4>
-    //       <h2>THB 2,890.00</h2>
-    //   </div>
-    //   <div className="product4" onClick={ProductClick}>
-    //     <img src={`${process.env.PUBLIC_URL}/assets/IMG_2023.jpg`} alt="product4" />
-    //       <h3>Mushroomy</h3>
-    //       <h4>Market bag</h4>
-    //       <h2>THB 2,890.00</h2>
-    //   </div>
-    //   <Footer />
-    // </div>
   );
 }
 

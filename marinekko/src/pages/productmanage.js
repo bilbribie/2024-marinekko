@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../components/header';
 import Nav2 from '../components/nav2';
 import Footer from '../components/footer';
 import { Link, useNavigate } from 'react-router-dom';
@@ -19,6 +20,7 @@ function ProductManage() {
   
     return (
       <div>
+        <Header />
         <Nav2 />
         <div className="ProductManagement">
             <img src={`${process.env.PUBLIC_URL}/assets/.png`} alt="productmanage" />

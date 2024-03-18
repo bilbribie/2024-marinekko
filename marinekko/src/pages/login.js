@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Nav1 from '../components/nav1';
+import Header from '../components/header';
 import Footer from '../components/footer';
 import './style/login.css'
 
@@ -35,6 +36,7 @@ function Login() {
   return (
     <div>
       <UsernameContext.Provider value = {registedUser ? (registedUser) : (null)}>
+      <Header />
       <Nav1 />
       </UsernameContext.Provider>
       

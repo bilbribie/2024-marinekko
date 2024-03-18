@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Nav1 from '../components/nav1';
+import Header from '../components/header';
 import Footer from '../components/footer';
 import './style/search.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 
 function HandleBagRender(bagsArray,currentPage){
   const returnedList = [];
+
+  
   // assume 1 page contain at most 12 bags
   let bagsPerPage = 12;
   for(let i = (currentPage - 1) * bagsPerPage;i < currentPage * bagsPerPage && i < bagsArray.length;i++){
-    returnedList.push((<div class = "bag-container">
+    returnedList.push((<div class = "bag-container"><Link class = "NoDecorate" to = "/bag">
     <img src = {bagsArray[i].img}></img>
     <div class = "bag-description-container">
 
@@ -17,7 +21,7 @@ function HandleBagRender(bagsArray,currentPage){
       <div class = "catagory">{bagsArray[i].catagory}</div>
       <div class = "price">{"THB " + bagsArray[i].price + ".00"}</div>
       
-    </div>
+    </div></Link>
   </div>));
   }
   return returnedList;
@@ -26,40 +30,9 @@ function HandleBagRender(bagsArray,currentPage){
 
 
 
-function HandlePageBlockRender(currentPage,numPage,setCurrentPage){
-  /* page changer button more than 4 page */
-  /* selected page is highlight as pink */
-  /* if current page is not 1, arrow block is shown*/
-  /* user can click to select or use arrow to move */
-  /* {only show 4 page block at once} */
-  /* {if the current page is more than 4 show arrow block on the left} */
-  const returnedList = [];
-  if(numPage == 1){
-    returnedList.push(<div class = "block selected">1</div>);
-    return returnedList;
-  }
 
-  // if(currentPage != 1){
-  //   returnedList.push(<button class = "block pageNav" >{"<"}</button>);
-  // }
 
-  for(let i = currentPage;i <= numPage && i <= currentPage + 3;i++){
-    if(i == currentPage){
-      returnedList.push(<div class = "block selected">{i}</div>);
-    }else{
-      returnedList.push(<div class = "block">{i}</div>);
-    }
-  }
-
-  // if(currentPage != numPage){
-  //   returnedList.push(<button class = "block pageNav">{">"}</button>);
-  // }
-
-  return returnedList;
-
-}
-
-function ProductManage() {
+function Search() {
   /*
   const navigate = useNavigate();
 
@@ -68,15 +41,37 @@ function ProductManage() {
     navigate('/detail');
   };
   */
+
+
   const [numberOfPage,setNumberOfPage] = useState(5);
   const [currentPage,setCurrentPage] = useState(1);
 
-  const incrementPage = () => {
-    setCurrentPage((prev) => prev + 1);
-  }
+
+
+
+  function HandlePageBlockRender(){
+    /* page changer button more than 4 page */
+    /* selected page is highlight as pink */
+    /* if current page is not 1, arrow block is shown*/
+    /* user can click to select or use arrow to move */
+    /* {only show 4 page block at once} */
+    /* {if the current page is more than 4 show arrow block on the left} */
+    const returnedList = [];
+    if(numberOfPage == 1){
+      returnedList.push(<div class = "block selected">1</div>);
+      return returnedList;
+    }
   
-  const decrementPage = () => {
-    setCurrentPage((prev) => prev - 1);
+    for(let i = currentPage;i <= numberOfPage && i <= currentPage + 3;i++){
+      if(i == currentPage){
+        returnedList.push(<div class = "block selected">{i}</div>);
+      }else{
+        returnedList.push(<div class = "block" onClick = {() => {setCurrentPage(i)}}>{i}</div>);
+      }
+    }
+  
+    return returnedList;
+  
   }
 
   //test data
@@ -116,6 +111,7 @@ function ProductManage() {
   return (
     <div>
       {/* <Nav2 /> */}
+      <Header />
       <Nav1 />
       <div class = "page-container">
 
@@ -173,9 +169,11 @@ function ProductManage() {
         <section class = "page-selector-container">
         
           {/* <div class = "block pageNav" onClick={decrementPage}>{"<"}</div> */}
-          {currentPage != 1 ? (<div class = "block pageNav" onClick={decrementPage}>{"<"}</div>):null}
-          {HandlePageBlockRender(currentPage,numberOfPage)}
-          {currentPage != numberOfPage ? (<div class = "block pageNav" onClick={incrementPage}>{">"}</div>):null}
+          {currentPage != 1 ? (<div class = "block pageNav" onClick={ ()=>{setCurrentPage((prev) => prev - 1)} }>{"<"}</div>):null}
+
+          {HandlePageBlockRender()}
+
+          {currentPage != numberOfPage ? (<div class = "block pageNav" onClick={ ()=>{setCurrentPage((prev) => prev + 1)} }>{">"}</div>):null}
           {/* <div class = "block pageNav" onClick={incrementPage}>{">"}</div> */}
 
         </section>
@@ -186,4 +184,4 @@ function ProductManage() {
   );
 }
 
-export default ProductManage;
+export default Search;
