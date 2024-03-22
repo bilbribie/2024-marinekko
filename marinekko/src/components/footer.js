@@ -3,12 +3,22 @@ import { Link } from 'react-router-dom';
 import './com_style/footer.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 
+
 function Footer() {
+
+  // const navigate = useNavigate();
+  // const data = { email: "John", pass: 303 };
+
+  // const ROUTE = () => {
+  //   navigate("/login",{state : data});
+  // }
+
+  
   return (
     <footer>
       <button class = "toTopButton" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Top of Page ^</button>
       
-      
+
       <section class = "footerNav">
 
           <section class = "container">

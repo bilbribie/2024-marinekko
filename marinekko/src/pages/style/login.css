@@ -10,6 +10,7 @@
     padding-top: 50px;
     padding-bottom: 50px;
     font-family: 'Nunito';
+    background-color: rgb(243, 243, 243);
 
     .login-container{
         color : rgb(95, 95, 95);

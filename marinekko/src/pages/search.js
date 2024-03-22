@@ -5,6 +5,7 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import './style/search.css';
 import "bootstrap/dist/css/bootstrap.min.css"
+import PageNavBlock from '../components/pagenavblock';
 
 function HandleBagRender(bagsArray,currentPage){
   const returnedList = [];
@@ -43,36 +44,8 @@ function Search() {
   */
 
 
-  const [numberOfPage,setNumberOfPage] = useState(5);
+  const [numberOfPage,setNumberOfPage] = useState(2);
   const [currentPage,setCurrentPage] = useState(1);
-
-
-
-
-  function HandlePageBlockRender(){
-    /* page changer button more than 4 page */
-    /* selected page is highlight as pink */
-    /* if current page is not 1, arrow block is shown*/
-    /* user can click to select or use arrow to move */
-    /* {only show 4 page block at once} */
-    /* {if the current page is more than 4 show arrow block on the left} */
-    const returnedList = [];
-    if(numberOfPage == 1){
-      returnedList.push(<div class = "block selected">1</div>);
-      return returnedList;
-    }
-  
-    for(let i = currentPage;i <= numberOfPage && i <= currentPage + 3;i++){
-      if(i == currentPage){
-        returnedList.push(<div class = "block selected">{i}</div>);
-      }else{
-        returnedList.push(<div class = "block" onClick = {() => {setCurrentPage(i)}}>{i}</div>);
-      }
-    }
-  
-    return returnedList;
-  
-  }
 
   //test data
   let bagsArray = [{name : "Bag1", catagory : "Tota Bag", price : 2000, img : process.env.PUBLIC_URL + "/assets/bagSample1.jpg"},
@@ -113,7 +86,7 @@ function Search() {
       {/* <Nav2 /> */}
       <Header />
       <Nav1 />
-      <div class = "page-container">
+      <div class = "page-container-search">
 
         <div class = "header">
         <section class = "bar">
@@ -167,15 +140,9 @@ function Search() {
         </section>
 
         <section class = "page-selector-container">
+
+          <PageNavBlock currentPage = {currentPage} numberOfPage = {numberOfPage} setCurrentPage = {setCurrentPage}/>
         
-          {/* <div class = "block pageNav" onClick={decrementPage}>{"<"}</div> */}
-          {currentPage != 1 ? (<div class = "block pageNav" onClick={ ()=>{setCurrentPage((prev) => prev - 1)} }>{"<"}</div>):null}
-
-          {HandlePageBlockRender()}
-
-          {currentPage != numberOfPage ? (<div class = "block pageNav" onClick={ ()=>{setCurrentPage((prev) => prev + 1)} }>{">"}</div>):null}
-          {/* <div class = "block pageNav" onClick={incrementPage}>{">"}</div> */}
-
         </section>
 
       </div>

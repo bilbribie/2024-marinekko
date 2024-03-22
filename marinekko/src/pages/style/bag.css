@@ -1,48 +1,61 @@
 
-.page-container{
+.page-container-bag{
+    background-color: rgb(243, 243, 243);
     width: 100%;
     height: fit-content;
     /* background-color: rgb(238, 10, 128); */
     
     .product-container{
+
         padding-top: 10px; 
         /* remove padding later */
         margin: 20px;
         width: auto;
-        height: 650px;
+        height: calc(0.5 * (100vw - 40px));
         /* background-color: black; */
         display: flex;
 
-        
     }
 
     .picture-container{
         width: 50%;
-        height: 700px;
+        height: 100%;
         /* background-color: rgb(144, 213, 71); */
         display : flex;
         justify-content: flex-end;
+        column-gap: 5%;
 
         .pictureList{
             display: flex;
             flex-flow: column;
-            height: fit-content;
-            width: 20%; /* 20% of width of .picture-container*/
+            height: 80%;
+            width: 15%; /* 15% of width of .picture-container*/
             /* background-color: rgb(32, 32, 136); */
+            row-gap: 5%;
         }
 
         .picture{
+            filter: brightness(75%);
             border : solid ;
             border-radius: 0.1px;
-            width: 90%;
-            height : 100px;
+            width: 100%;
+            height : 20%;
+        }
+
+        .picture:hover{
+            filter: brightness(100%);
+        }
+
+        .selected{
+            filter: brightness(100%);
+            border-color: pink;
         }
 
         .mainPicture{
             border : solid ;
             border-radius: 0.1px;
-            width: 70%; /* 70% of width of .picture-container*/
-            height : 600px;
+            width: 80%; /* 80% of width of .picture-container*/
+            height : 100%;
         }
 
     }

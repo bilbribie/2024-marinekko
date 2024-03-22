@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Nav1 from '../components/nav1';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Recommend from '../components/recommend';
 import './style/bag.css'
-import { useParams } from 'react-router-dom';
 
 // CREATE TABLE Bag (
 //     `BagID` int(10) NOT NULL,
@@ -20,12 +19,13 @@ import { useParams } from 'react-router-dom';
 
 function Bag(){
 
-    // let { bag1 } = useParams();
+    
 
     let recommendedArray = [{name : "Bag1", catagory : "Tota Bag", price : 2000, img : process.env.PUBLIC_URL + "/assets/bagSample1.jpg"},
                           {name : "Bag2", catagory : "Tota Bag", price : 2100, img : process.env.PUBLIC_URL + "/assets/bagSample2.jpg"},
                           {name : "Bag3", catagory : "Shoulder Bag", price : 2200, img : process.env.PUBLIC_URL + "/assets/bagSample1.jpg"},
                           {name : "Bag4", catagory : "Shoulder Bag", price : 6300, img : process.env.PUBLIC_URL + "/assets/bagSample2.jpg"}]
+
 
     const testBag = {BagID : 1,
         BagName : "your Favorite bag",
@@ -34,29 +34,32 @@ function Bag(){
         BagPrice : 2999,
         BagStock : 3,
         BagDescription : "The Mono Mini Tote is made of organic cotton. The large Marimekko “M” is printed in the front. The small bag has handles and an open pocket on the outside\nSIZE\nHeight: 23.00 cm\nWidth: 31.00 cm\nDepth: 14.50 cm\nMain Material: 100 % Cotton\n",
-        BagImage1 : process.env.PUBLIC_URL + "/assets/bagSample1.jpg",
-        BagImage2 : process.env.PUBLIC_URL + "/assets/bagSample1.jpg",
-        BagImage3 : process.env.PUBLIC_URL + "/assets/bagSample1.jpg",
-        BagImage4 : process.env.PUBLIC_URL + "/assets/bagSample1.jpg"}
+        BagImages : [process.env.PUBLIC_URL + "/assets/bagSample1.jpg",
+        process.env.PUBLIC_URL + "/assets/IMG_2023.jpg",
+        process.env.PUBLIC_URL + "/assets/bagSample2.jpg",
+        process.env.PUBLIC_URL + "/assets/IMG_2023.jpg"]}
+
+    const [ imageIndex, setImageIndex ] = useState(0);
 
     return (
         <div>
             <Header />
             <Nav1 />
-            <div class = "page-container">
+            <div class = "page-container-bag">
                 
             <section class = "product-container">
 
                 <div class = "picture-container">
 
                     <div class = "pictureList">
-                        <img class = "picture" src = {testBag.BagImage1}></img>
-                        <img class = "picture" src = {testBag.BagImage2}></img>
-                        <img class = "picture" src = {testBag.BagImage3}></img>
-                        <img class = "picture" src = {testBag.BagImage4}></img>
+                        
+                        {testBag.BagImages.map((I, idx) => 
+                        {return ( idx == imageIndex ? (<img class = "picture selected" src = {I} onClick = {() => {setImageIndex(idx)}}></img>) : (<img class = "picture" src = {I} onClick = {() => {setImageIndex(idx)}}></img>)
+                        );})}
+
                     </div>
 
-                    <img class = "mainPicture" src = {testBag.BagImage1}></img>
+                    <img class = "mainPicture" src = {testBag.BagImages[imageIndex]}></img>
 
                 </div>
 

@@ -9,7 +9,7 @@ function Recommend(prop){
     return (<div class = "component-container">
                 <section class = "recommended-container">
                 {prop.bagsArray.map((bag) => {return(
-                    <div class = "recommended-bag-container">
+                    <Link class = "recommended-bag-container" to = "/bag">
                         <img src = {bag.img} class = "img-container"></img>
                         <div class = "description-container">
                         <div class = "name">
@@ -22,7 +22,7 @@ function Recommend(prop){
                             {"THB " + bag.price + ".00"}
                         </div>
                         </div>
-                    </div>)})}
+                    </Link>)})}
                 </section>
             </div>);
 

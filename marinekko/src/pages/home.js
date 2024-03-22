@@ -35,7 +35,7 @@ function Home() {
       <Header />
       <Nav1 />
 
-      <div class = "page-container"> {/* page-container*/}
+      <div class = "page-container-home"> {/* page-container*/}
 
         <section class = "newCollectionBackground">
           <div class = "center">

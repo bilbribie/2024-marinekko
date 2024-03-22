@@ -3,7 +3,8 @@
     font-family: "Maven Pro", sans-serif;
 }
 
-.page-container{
+.page-container-home{
+    background-color: rgb(243, 243, 243);
 
     .newCollectionBackground{
 

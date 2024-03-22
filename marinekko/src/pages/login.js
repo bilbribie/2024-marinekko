@@ -10,6 +10,9 @@ const UsernameContext = React.createContext();
 
 function Login() {
 
+  
+  
+
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const [registedUser, setRegistedUser] = useState(null);
@@ -61,7 +64,7 @@ function Login() {
               <div>Username:</div>
 
               <div class = "center" >
-                <input type="text" placeholder="username" id = "username" required onChange={HandleUsernameInput}/>
+                <input type="text" placeholder= "username" id = "username" required onChange={HandleUsernameInput}/>
               </div>
 
               <div>Password:</div>
