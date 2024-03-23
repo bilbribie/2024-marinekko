@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/header';
 import Nav2 from '../components/nav2';
 import Footer from '../components/footer';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './style/productmanage.css'
 import PageNavBlock from '../components/pagenavblock';
 
@@ -134,7 +134,7 @@ function ProductManage() {
               </table>
             </section>
 
-            {<PageNavBlock currentPage = {currentPage} numberOfPage = {totalPage} setCurrentPage = {setCurrentPage}/>}
+            <PageNavBlock currentPage = {currentPage} numberOfPage = {totalPage} setCurrentPage = {setCurrentPage}/>
 
         </section>
         

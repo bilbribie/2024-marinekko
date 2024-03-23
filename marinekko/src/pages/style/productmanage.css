@@ -50,7 +50,7 @@
         width: 100%;
         height: 100px;
         display: flex;
-        justify-content: center;
+        /* justify-content: center; */
         align-items: center;
 
         .container{
@@ -78,6 +78,7 @@
         .flex-start{
             display: flex;
             justify-content: flex-start;
+            padding-left: 20px;
         }
 
         .searchBar{
@@ -179,9 +180,6 @@
                 /* delete */
                 width: 5%;
             }
-
-
-
 
         }
 

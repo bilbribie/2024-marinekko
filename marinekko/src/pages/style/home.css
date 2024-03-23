@@ -1,17 +1,17 @@
 
 * {
-    font-family: "Maven Pro", sans-serif;
+    font-style: Optima, sans-serif;
 }
 
 .page-container-home{
     background-color: rgb(243, 243, 243);
+    padding-top: 50px;
 
     .newCollectionBackground{
 
-        margin-top: 50px;
+        
         width: 100%;
         height: calc(0.5 * 100vw);
-
         background-size: cover;
         background-image: url("/assets/bags.jpg");
         

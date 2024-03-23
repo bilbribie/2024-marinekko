@@ -42,14 +42,16 @@ function Login() {
       <Header />
       <Nav1 />
       </UsernameContext.Provider>
-      
-        <div class = "header">
+
+      <div class = "header_">
         <img  class = "userLogo" src={`${process.env.PUBLIC_URL}/assets/user1.png`} alt="user" />
         <label>Administrator Log In</label>
-        </div>
+      </div>
 
       <div class = "page-container-login">
         <div class = "login-container">
+
+          
             
             <div class = "header">
             Administrator Log In

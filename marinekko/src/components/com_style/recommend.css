@@ -1,18 +1,22 @@
 
 .component-container{
 
+    background-color: rgb(243, 243, 243);
+
     .recommended-container{
 
         /* background-color: green; */
         width: auto;
         height: 430px;
         height: calc(0.4 * (100vw - 80px));
-        margin-top: 20px;
+        /* margin-top: 20px; */
         margin-left: 40px;
         margin-right: 40px;
+        padding-top: calc(0.025 * (100vw - 80px));
+        padding-bottom: calc(0.025 * (100vw - 80px));
+        /* margin-bottom: 30px; */
         display: flex;
         justify-content: space-evenly;
-        margin-bottom: 30px;
     
     }
 
@@ -20,15 +24,16 @@
         text-decoration: none;
         width: 24%;
         height: 100%;
-        background-color: rgb(232, 14, 14);
+        transition: 0.2s;
+        /* background-color: rgb(232, 14, 14); */
     
         .img-container{
-            border: solid pink;
-            border-width: 1%;
             width: 100%;
             height: 70%;
-            background-color: aqua;
+            /* background-color: aqua; */
         }
+
+        
     
         .description-container{
             padding-left: 10px;
@@ -38,7 +43,7 @@
             flex-flow: column;
             align-items: flex-start;
             justify-content: center;
-            background-color: rgb(243, 241, 241);
+            background-color: rgb(234, 240, 238);
 
             .name{
                 /* background-color: aquamarine; */
@@ -52,6 +57,19 @@
             .price{
                 /* background-color: blueviolet; */
                 color : rgb(198, 133, 144);
+            }
+        }
+
+        
+    }
+
+    .recommended-bag-container:hover{
+        transform: scale(1.1);
+
+        .description-container{
+            background-color: black;
+            .name{
+                color: white;
             }
         }
     }

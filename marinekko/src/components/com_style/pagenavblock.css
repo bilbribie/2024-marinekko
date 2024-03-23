@@ -1,5 +1,7 @@
 .component-container{
 
+    background-color: rgb(243, 243, 243);
+
     .page-selector-container{
         width: auto;
         height: 90px;
@@ -18,7 +20,7 @@
             border: solid;
             border-width: 1px;
             background-color: white;
-    
+            transition: 0.5s;
     
         }
     
@@ -27,6 +29,7 @@
         }
     
         .selected{
+            transform: scale(1.05);
             background-color: pink;
         }
     
