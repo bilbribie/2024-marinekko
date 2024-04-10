@@ -4,13 +4,12 @@ import { Link } from 'react-router-dom';
 
 function Recommend(prop){
 
-    
-
+    const staticFilePath = "http://localhost:2999/picture";
     return (<div class = "component-container">
                 <section class = "recommended-container">
                 {prop.bagsArray.map((bag) => {return(
-                    <Link class = "recommended-bag-container" to = "/bag">
-                        <img src = {bag.img} class = "img-container"></img>
+                    <Link class = "recommended-bag-container" to = "/bag" state = {bag}>
+                        <img src = {staticFilePath + bag.img} class = "img-container"></img>
                         <div class = "description-container">
                         <div class = "name">
                             {bag.name}

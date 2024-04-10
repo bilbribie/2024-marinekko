@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import Nav1 from '../components/nav1';
+import Nav2 from '../components/nav2';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import './style/search.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 import PageNavBlock from '../components/pagenavblock';
 
-function HandleBagRender(bagsArray,currentPage){
+let bagsArray = [];
+
+function HandleBagRender(currentPage){
+  
   const returnedList = [];
 
-  
+  const staticFilePath = "http://localhost:2999/picture";
+
   // assume 1 page contain at most 12 bags
   let bagsPerPage = 12;
   for(let i = (currentPage - 1) * bagsPerPage;i < currentPage * bagsPerPage && i < bagsArray.length;i++){
-    returnedList.push((<div class = "bag-container"><Link class = "NoDecorate" to = "/bag">
-    <img src = {bagsArray[i].img}></img>
+    // call api   /bag
+    returnedList.push((<div class = "bag-container"><Link class = "NoDecorate" to = "/bag" state = {bagsArray[i]}>
+    <img src = {staticFilePath + bagsArray[i].img} alt = {bagsArray.name}></img>
     <div class = "bag-description-container">
-
       <div class = "name">{bagsArray[i].name}</div>
       <div class = "catagory">{bagsArray[i].catagory}</div>
       <div class = "price">{"THB " + bagsArray[i].price + ".00"}</div>
@@ -26,48 +30,53 @@ function HandleBagRender(bagsArray,currentPage){
   </div>));
   }
   return returnedList;
+  // bagId = {bagsArray[i].bagId}
 
 }
 
 
-
-
-
 function Search() {
-  /*
-  const navigate = useNavigate();
-
-  const ProductClick = (event) => {
-    event.preventDefault(); 
-    navigate('/detail');
-  };
-  */
-
-
-  const [numberOfPage,setNumberOfPage] = useState(2);
+  
+  const [reload,setReload] = useState(true);
+  const [hasLoad,setHasLoad] = useState(true);
+  const [numberOfPage,setNumberOfPage] = useState(1);
   const [currentPage,setCurrentPage] = useState(1);
 
-  //test data
-  let bagsArray = [{name : "Bag1", catagory : "Tota Bag", price : 2000, img : process.env.PUBLIC_URL + "/assets/bagSample1.jpg"},
-                          {name : "Bag2", catagory : "Tota Bag", price : 2100, img : process.env.PUBLIC_URL + "/assets/bagSample2.jpg"},
-                          {name : "Bag3", catagory : "Shoulder Bag", price : 2200, img : process.env.PUBLIC_URL + "/assets/bagSample1.jpg"},
-                          {name : "Bag4", catagory : "Shoulder Bag", price : 6300, img : process.env.PUBLIC_URL + "/assets/bagSample2.jpg"},
-                          {name : "Bag5", catagory : "Tota Bag", price : 2000, img : process.env.PUBLIC_URL + "/assets/bagSample1.jpg"},
-                          {name : "Bag6", catagory : "Tota Bag", price : 2100, img : process.env.PUBLIC_URL + "/assets/bagSample2.jpg"},
-                          {name : "Bag7", catagory : "Shoulder Bag", price : 2200, img : process.env.PUBLIC_URL + "/assets/bagSample1.jpg"},
-                          {name : "Bag8", catagory : "Shoulder Bag", price : 6300, img : process.env.PUBLIC_URL + "/assets/bagSample2.jpg"},
-                          {name : "Bag9", catagory : "Tota Bag", price : 2000, img : process.env.PUBLIC_URL + "/assets/bagSample1.jpg"},
-                          {name : "Bag10", catagory : "Tota Bag", price : 2100, img : process.env.PUBLIC_URL + "/assets/bagSample2.jpg"},
-                          {name : "Bag11", catagory : "Tota Bag", price : 2100, img : process.env.PUBLIC_URL + "/assets/bagSample2.jpg"},
-                          {name : "Bag12", catagory : "Shoulder Bag", price : 2200, img : process.env.PUBLIC_URL + "/assets/bagSample1.jpg"},
-                          {name : "Bag13", catagory : "Shoulder Bag", price : 6300, img : process.env.PUBLIC_URL + "/assets/bagSample2.jpg"},
-                          {name : "Bag14", catagory : "Tota Bag", price : 2000, img : process.env.PUBLIC_URL + "/assets/bagSample1.jpg"},
-                          {name : "Bag15", catagory : "Tota Bag", price : 2100, img : process.env.PUBLIC_URL + "/assets/bagSample2.jpg"},
-                          {name : "Bag16", catagory : "Shoulder Bag", price : 2200, img : process.env.PUBLIC_URL + "/assets/bagSample1.jpg"},
-                          {name : "Bag17", catagory : "Shoulder Bag", price : 6300, img : process.env.PUBLIC_URL + "/assets/bagSample2.jpg"},
-                          {name : "Bag18", catagory : "Tota Bag", price : 2000, img : process.env.PUBLIC_URL + "/assets/bagSample1.jpg"},
-                          {name : "Bag19", catagory : "Tota Bag", price : 2100, img : process.env.PUBLIC_URL + "/assets/bagSample2.jpg"}
-                        ]
+  useEffect(() => {
+    fetch("http://localhost:2999/search_api")
+    .then(res => res.json())
+    .then(data => {bagsArray = data;
+      // alert(JSON.stringify(data));
+      setNumberOfPage(Math.floor(bagsArray.length/12) + 1);
+      setCurrentPage(1)})
+    .then(setReload(!reload))
+    
+  },[hasLoad]);
+
+
+  useEffect(() => { // reload the page without triggering reset???
+    setReload(!reload);
+  },[reload]);
+
+
+  const handleBagSearch = () => {
+    const name = document.getElementById("searchName").value;
+    const catagory = document.getElementById("catagory").value;
+    const color = document.getElementById("color").value;
+    const priceRange = document.getElementById("priceRange").value;
+    let url;
+    url = `http://localhost:2999/search_api_query/?name=${name}&catagory=${catagory}&color=${color}&priceRange=${priceRange}`;
+
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {bagsArray = data; 
+      // alert(JSON.stringify(data));
+      setNumberOfPage(Math.floor(bagsArray.length/12) + 1);
+      setCurrentPage(1)})
+    .then(setReload(!reload));
+  }
+
+ 
 
   //test data
   let catagoriesArray = ["Tote bag","Shoulder Bag","Backpack","Handbag","Wallet"]
@@ -80,27 +89,36 @@ function Search() {
   for(let i = 1;i <= 10;i++){
     priceRanges.push((1000 * i) + "-" + (1000 * (1 + i)));
   }
+
+  // if(!bagsArray){
+  //   return <div>NO</div>
+  // }else{
+  //   return <div>{JSON.stringify(bagsArray)}</div>
+  // }
   
   return (
     <div>
-      {/* <Nav2 /> */}
       <Header />
-      <Nav1 />
+      <Nav2 />
       <div class = "page-container-search">
 
         <div class = "header">
         <section class = "bar">
 
             <div class = "searchBox">
-              <input type = "text" placeholder="search">
+              <input type = "text" placeholder="search" id = "searchName">
               </input>
-              <img class="searchbutton"
-              src={`${process.env.PUBLIC_URL}/assets/search.png`}
-              alt="Search"/>
+              
+              <button onClick={() => {handleBagSearch();}}>
+                <img class="searchbutton" 
+                src={`${process.env.PUBLIC_URL}/assets/search.png`}
+                alt="Search"/>
+              </button>
+
             </div>
 
             <div>
-              <select name="catagories" class="form-select" >
+              <select name="catagories" class="form-select" id = "catagory" >
                 <option value= "none" selected >catagory</option>
                 {catagoriesArray.map((catagory) => { 
                   return (<option value= {catagory}>{catagory}</option>);
@@ -110,7 +128,7 @@ function Search() {
             </div>
 
             <div>
-              <select name="color" class="form-select" >
+              <select name="color" class="form-select" id = "color">
                 <option value= "none" selected >color</option>
                 {colorsArray.map((color) => { 
                   return (<option value= {color}>{color}</option>);
@@ -120,7 +138,7 @@ function Search() {
             </div>
             
             <div>
-              <select name="price range" class="form-select" >
+              <select name="price range" class="form-select" id = "priceRange" >
                 <option value= "none" selected >price</option>
 
                 {priceRanges.map((priceRange) => (<option value = {priceRange}>{priceRange}</option>))}
@@ -133,17 +151,23 @@ function Search() {
         </section>
         </div>
 
-        <section class = "bags-container">
-          
-          {HandleBagRender(bagsArray,currentPage)}
-                
+        {bagsArray.length == 0?(
+        <section class = "noBagsFound-container">
+          NO BAGS FOUND
+        </section>) : 
+        (<><section class = "bags-container">
+          {HandleBagRender(currentPage)}
         </section>
-
-        <section class = "page-selector-container">
-
+          <section class = "page-selector-container">
           <PageNavBlock currentPage = {currentPage} numberOfPage = {numberOfPage} setCurrentPage = {setCurrentPage}/>
+        </section></>)}
+
         
-        </section>
+
+        
+        {/* <div>
+          {`CURRENT ${currentPage}     MAXPAGE ${numberOfPage}            expected ${Math.floor(bagsArray.length/12) + 1}`}
+        </div> */}
 
       </div>
       <Footer />
