@@ -15,11 +15,11 @@ function Home() {
     navigate('/detail');
   };
 
-  let catagoriesArray = [{name : "Tote Bag", img : process.env.PUBLIC_URL + "/assets/IMG_2023.jpg"},
-                          {name : "Shoulder Bag", img : process.env.PUBLIC_URL + "/assets/IMG_2023.jpg"},
-                          {name : "Back pack", img : process.env.PUBLIC_URL + "/assets/IMG_2023.jpg"},
-                          {name : "Handbag", img : process.env.PUBLIC_URL + "/assets/IMG_2023.jpg"},
-                          {name : "Wallet", img : process.env.PUBLIC_URL + "/assets/IMG_2023.jpg"}];
+  let catagoriesArray = [{name : "Tote Bag", img : process.env.PUBLIC_URL + "/assets/tote.jpg"},
+                          {name : "Shoulder Bag", img : process.env.PUBLIC_URL + "/assets/shoulder.jpg"},
+                          {name : "Back pack", img : process.env.PUBLIC_URL + "/assets/backpack.jpg"},
+                          {name : "Handbag", img : process.env.PUBLIC_URL + "/assets/hand.jpg"},
+                          {name : "Wallet", img : process.env.PUBLIC_URL + "/assets/wallet.jpg"}];
 
   // bag objects
   // {name, catagory, price, img}
