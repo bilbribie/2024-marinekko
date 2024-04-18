@@ -1,0 +1,92 @@
+/* accountmanage.css */
+.page-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header styling */
+  .admin-header {
+    background-color: #f3e9ee;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #333;
+    font-size: 1.5rem;
+  }
+  
+  /* Admin list and table styling */
+  .admin-list {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .admin-list th,
+  .admin-list td {
+    text-align: left;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Buttons and interactive elements */
+  .button-primary {
+    background-color: #e91e63;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+  }
+  
+  .button-primary:hover {
+    background-color: #c2185b;
+  }
+  
+  .editButton,
+  .deleteButton {
+    cursor: pointer;
+  }
+  
+  /* Pagination and search bar */
+  .pagination-container {
+    margin: 1rem 0;
+    text-align: center;
+  }
+  
+  .search-bar {
+    margin-bottom: 1rem;
+  }
+  
+  .search-input {
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .search-button {
+    padding: 0.5rem 1rem;
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Footer styling */
+  .footer {
+    background-color: #f3e9ee;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .footer a {
+    color: #333;
+    text-decoration: none;
+  }
+  

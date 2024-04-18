@@ -1,0 +1,11 @@
+.admin-row button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .admin-row button img {
+    width: 20px; /* Adjust size as needed */
+    height: auto;
+  }
+  

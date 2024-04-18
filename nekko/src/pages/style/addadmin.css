@@ -1,0 +1,41 @@
+
+.admin-form {
+    background-color: #f3e9ee;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 2rem auto;
+  }
+  
+  .admin-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .admin-form input[type="text"],
+  .admin-form input[type="email"],
+  .admin-form input[type="password"] {
+    width: calc(100% - 1rem);
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Submit button styling */
+  .admin-form .button-submit {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #e91e63;
+    color: white;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  
+  .admin-form .button-submit:hover {
+    background-color: #c2185b;
+  }
+  
