@@ -7,6 +7,7 @@ import './style/search.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 import PageNavBlock from '../components/pagenavblock';
 
+
 let bagsArray = [];
 
 function HandleBagRender(currentPage){

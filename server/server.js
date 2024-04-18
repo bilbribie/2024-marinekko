@@ -55,11 +55,105 @@ router.get('/api/bag/:id', (req, res) => {
   })
 });
 
+// to query search bag in Marinekko datatbase
+router.get('/search_api_query', (req, res) => {
+  let query = 'SELECT * FROM Bag WHERE 1=1';
+  const params = [];
+
+  if (req.query.name) {
+    query += ' AND BagName LIKE ?';
+    params.push(`%${req.query.name}%`);
+  }
+
+  if (req.query.category) {
+    query += ' AND BagCategory = ?';
+    params.push(req.query.category);
+  }
+
+  if (req.query.color) {
+    query += ' AND BagColor = ?';
+    params.push(req.query.color);
+  }
+
+  if (req.query.priceRange) {
+    const [minPrice, maxPrice] = req.query.priceRange.split('-').map(Number);
+    query += ' AND BagPrice BETWEEN ? AND ?';
+    params.push(minPrice, maxPrice);
+  }
+
+  connection.query(query, params, (error, results) => {
+    if (error) return res.status(500).json({ error: error.message });
+    res.json(results);
+  });
+});
+
+router.post('/api/login', (req, res) => {
+  const { username, password } = req.body;
+  connection.query(
+    'SELECT * FROM AdminAccount WHERE AdminUsername = ? AND AdminPassword = ?',
+    [username, password],
+    (error, results) => {
+      if (error) {
+        return res.status(500).json({ error });
+      }
+      if (results.length > 0) {
+        console.log(`Login attempt with username: ${username} and password: ${password}`);
+        res.json({ message: 'Login successful', user: results[0] });
+      } else {
+        res.status(401).json({ message: 'Login failed' });
+      }
+    }
+  );
+});
+
+
 // to receive all admin account from Marinekko datatbase
 router.get('/api/adminaccount', (req, res) => {
   connection.query('SELECT * FROM AdminAccount', (error, results) => {
     if (error) throw error;
     res.json(results);
+  });
+});
+
+// POST request to add a new admin
+router.post('/api/adminaccount', (req, res) => {
+  const { username, firstName, lastName, email, password } = req.body;
+
+  // Construct the SQL query to insert new admin data
+  const insertQuery = `
+    INSERT INTO AdminAccount (AdminUsername, AdminFirstName, AdminSurname, AdminEmail, AdminPassword) 
+    VALUES (?, ?, ?, ?, ?)`;
+
+  connection.query(insertQuery, [username, firstName, lastName, email, password], (error, results) => {
+    if (error) {
+      // Handle the error, for example send a 500 status code
+      return res.status(500).json({ error: error.message });
+    }
+
+    // Send a successful response, for example:
+    res.status(201).json({ message: 'New admin added successfully', adminId: results.insertId });
+  });
+});
+
+// PUT request to edit an existing admin
+router.put('/api/adminaccount/:adminId', (req, res) => {
+  const { adminId } = req.params;
+  const { username, firstName, lastName, email, password } = req.body;
+
+  // Construct the SQL query to update admin data
+  const updateQuery = `
+    UPDATE AdminAccount 
+    SET AdminUsername = ?, AdminFirstName = ?, AdminSurname = ?, AdminEmail = ?, AdminPassword = ?
+    WHERE AdminID = ?`;
+
+  connection.query(updateQuery, [username, firstName, lastName, email, password, adminId], (error, results) => {
+    if (error) {
+      // Handle the error, for example send a 500 status code
+      return res.status(500).json({ error: error.message });
+    }
+
+    // Send a successful response, for example:
+    res.status(200).json({ message: 'Admin updated successfully' });
   });
 });
 

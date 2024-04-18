@@ -1,5 +1,5 @@
-run by:
+use map api
 
-cd '/path/to/nekko'
+(https://developer.nostramap.com/developer)
 
-npm run dev
+
