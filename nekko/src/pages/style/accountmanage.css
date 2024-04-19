@@ -1,6 +1,6 @@
 /* accountmanage.css */
 .page-container {
-    width: 90%;
+    width: 95%;
     max-width: 1200px;
     margin: 2rem auto;
     padding: 1rem;
@@ -23,59 +23,27 @@
     width: 100%;
     border-collapse: collapse;
   }
-  
-  .admin-list th,
-  .admin-list td {
-    text-align: left;
-    padding: 0.5rem;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  /* Buttons and interactive elements */
-  .button-primary {
-    background-color: #e91e63;
-    color: #ffffff;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 0.5rem;
-  }
-  
-  .button-primary:hover {
-    background-color: #c2185b;
-  }
-  
-  .editButton,
-  .deleteButton {
-    cursor: pointer;
-  }
-  
-  /* Pagination and search bar */
-  .pagination-container {
-    margin: 1rem 0;
-    text-align: center;
-  }
-  
-  .search-bar {
-    margin-bottom: 1rem;
-  }
-  
-  .search-input {
-    padding: 0.5rem;
-    margin-right: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  .search-button {
-    padding: 0.5rem 1rem;
-    background-color: #e91e63;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+
+  .admin-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ccc; /* Optional: adds a line between rows */
+}
+
+.admin-row > div,
+.admin-row > button {
+    margin-right: 10px;
+}
+
+.admin-row > div {
+    flex-grow: 1;
+}
+.admin-row img {
+  width: 24px; /* Adjust size as needed */
+  height: auto;
+}
   
   /* Footer styling */
   .footer {

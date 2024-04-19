@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import Header from './components/header';
 import Nav2 from './components/nav2';
 import Footer from './components/footer';
-import AdminRow from './components/adminrow'
-import PageNavBlock from './components/pagenavblock';
 import './style/accountmanage.css';
 
 function AccountManage() {
@@ -15,48 +13,51 @@ function AccountManage() {
 
   useEffect(() => {
     fetch('http://localhost:3001/api/adminaccount')
-      .then((response) => {
+      .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         return response.json();
       })
-      .then((data) => {
-        // Ensure every admin object has an 'id' property
-        const adminsData = data.map((admin) => {
-          if (!admin.hasOwnProperty('id') && admin.hasOwnProperty('someOtherIdProp')) {
-            // Assuming 'someOtherIdProp' is the property in your response that corresponds to 'id'
-            return { ...admin, id: admin.someOtherIdProp };
-          }
-          return admin;
-        });
-        setAdmins(adminsData);
-      })
-      .catch((error) => console.error('Error:', error));
+      .then(data => setAdmins(data))
+      .catch(error => console.error('Error:', error));
   }, []);
-  
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value.toLowerCase());
   };
 
-  const filteredAdmins = admins.filter((admin) => {
-    const adminUsername = admin.username || "";
-    return adminUsername.toLowerCase().includes(searchTerm);
-  });
+  const filteredAdmins = admins.filter(admin =>
+    admin.AdminUsername.toLowerCase().includes(searchTerm)
+  );
 
   const handleDeleteAdmin = (adminId) => {
-    fetch(`http://localhost:3001/api/adminaccount/${adminId}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-    })
+    if (window.confirm('Are you sure you want to delete this admin?')) {
+      fetch(`http://localhost:3001/api/adminaccount/${adminId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        setAdmins(admins.filter(admin => admin.id !== adminId));
+        return response.json(); // Process the JSON response
       })
-      .catch(error => console.error('Error:', error));
+      .then(data => {
+        console.log(data.message); // Log the success message
+        setAdmins(admins.filter(admin => admin.AdminID !== adminId));
+      })
+      .catch(error => {
+        console.error('Error:', error); // Log any errors
+        alert('Failed to delete admin: ' + error); // Provide feedback to the user
+      });
+    }
+  };
+
+  const handleEditAdmin = (adminId) => {
+    navigate(`/editadmin/${adminId}`);
   };
 
   return (
@@ -64,7 +65,6 @@ function AccountManage() {
       <Header />
       <Nav2 />
       <div className="admin-manage-container">
-        {/* Add search functionality */}
         <input
           type="text"
           placeholder="Search admins..."
@@ -72,17 +72,22 @@ function AccountManage() {
           onChange={handleSearch}
         />
         <button onClick={() => navigate('/addadmin')}>Add New Admin</button>
-        {/* Render admin rows */}
-        {filteredAdmins.map((admin) => {
-          // Ensure admin.id is not undefined
-          if (admin.id === undefined) {
-            console.error('Admin object is missing an id:', admin);
-            return null; 
-          }
-          return (
-            <AdminRow key={admin.id.toString()} admin={admin} onDelete={handleDeleteAdmin} />
-          );
-        })}
+        <div className="admin-list">
+          {filteredAdmins.map((admin) => (
+            <div key={admin.AdminID} className="admin-row">
+              <div>{admin.AdminUsername}</div>
+              <div>{admin.AdminFirstName}</div>
+              <div>{admin.AdminSurname}</div>
+              <div>{admin.AdminEmail}</div>
+              <button onClick={() => handleEditAdmin(admin.AdminID)}>
+                <img src='/assets/edit-text.png' alt="Edit" />
+              </button>
+              <button onClick={() => handleDeleteAdmin(admin.AdminID)}>
+                <img src='/assets/cross.png' alt="Delete" />
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
       <Footer />
     </div>

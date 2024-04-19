@@ -5,7 +5,6 @@ import Footer from './components/footer';
 import './style/ourteam.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-
 function OurTeam() {
   const position = [80.457233, 95.128172]; // latitude and longitude of marinekko shop
 
@@ -13,8 +12,8 @@ function OurTeam() {
     <div>
       <Header />
       <Nav1 />
-      <h1>Our shop location</h1>
       <section className="page-container-ourteam">
+        <h1>Our shop location</h1>
         {/* Map Section */}
         <MapContainer center={position} zoom={13} scrollWheelZoom={false} style={{ height: '400px', width: '100%' }}>
         <TileLayer

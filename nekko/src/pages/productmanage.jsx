@@ -1,3 +1,4 @@
+// productmanage.jsx
 import React, { useState, useEffect } from 'react';
 import Header from './components/header';
 import Nav2 from './components/nav2';

@@ -12,24 +12,33 @@ function EditAdmin() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { adminId } = useParams(); // Assume this is how you get the admin's ID
+  const { id: adminId } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch the current admin details to pre-populate the form
-    fetch(`http://localhost:3001/api/adminaccount/${adminId}`)
-      .then(response => response.json())
-      .then(data => {
-        setUsername(data.username);
-        setFirstName(data.firstName);
-        setLastName(data.lastName);
-        setEmail(data.email);
-        // Don't fetch password for security reasons
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+    if (adminId) {
+      fetch(`http://localhost:3001/api/adminaccount/${adminId}`)
+        .then(response => {
+          if (!response.ok) throw new Error('Failed to fetch admin data');
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+          // Set data if response is successful
+          setUsername(data.AdminUsername);
+          setFirstName(data.AdminFirstName);
+          setLastName(data.AdminSurname);
+          setEmail(data.AdminEmail);
+          setPassword(data.AdminPassword);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    } else {
+      console.error('Admin ID is undefined');
+    }
   }, [adminId]);
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,13 +51,18 @@ function EditAdmin() {
       body: JSON.stringify(adminData)
     })
     .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+      if (!response.ok) throw new Error('Failed to fetch admin data');
       return response.json();
     })
+    .then(data => {
+      console.log('Admin editted successfully');
+      setUsername(data.AdminUsername);
+      setFirstName(data.AdminFirstName);
+      setLastName(data.AdminSurname);
+      setEmail(data.AdminEmail);
+      setPassword(data.AdminPassword);
+    })
     .then(() => {
-      // Handle success here, maybe navigate to account management page
       navigate('/accountmanage');
     })
     .catch((error) => {
@@ -100,7 +114,7 @@ function EditAdmin() {
         <label>
           Password:
           <input
-            type="password"
+            type="text"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

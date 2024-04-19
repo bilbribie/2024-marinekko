@@ -1,13 +1,17 @@
 
-
+.h1{
+    background-color: white; 
+    color: rgb(255, 255, 128);
+}
 .page-container-ourteam{
     
     background-color: rgb(243, 243, 243);
+    
     .header{
 
         background-color: rgb(220, 220, 220);
         display: flex;
-        justify-content: start;
+        justify-content: space-around;
         column-gap: 20px;
         align-items: center;
         height: 80px;
@@ -19,11 +23,10 @@
         }
 
     }
-
     .members-container{
-        padding: 30px;
+        /* padding: 30px; */
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         /* background-color: aquamarine; */
 
         .member-container{

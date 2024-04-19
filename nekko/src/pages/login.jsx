@@ -30,7 +30,7 @@ function Login() {
       if (data.message === 'Login successful') {
         console.log('Login successful', data.user);
         localStorage.setItem('isLoggedIn', 'true'); // Store login state
-        navigate('/login-success'); // Change to desired route
+        navigate('/login-success'); // Change to desired routeๅ
       } else {
         console.error('Login failed');
         setError('Login Failed: ' + data.message);  // Set error message

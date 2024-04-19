@@ -119,19 +119,40 @@ router.get('/api/adminaccount', (req, res) => {
 router.post('/api/adminaccount', (req, res) => {
   const { username, firstName, lastName, email, password } = req.body;
 
-  // Construct the SQL query to insert new admin data
   const insertQuery = `
     INSERT INTO AdminAccount (AdminUsername, AdminFirstName, AdminSurname, AdminEmail, AdminPassword) 
     VALUES (?, ?, ?, ?, ?)`;
 
   connection.query(insertQuery, [username, firstName, lastName, email, password], (error, results) => {
     if (error) {
-      // Handle the error, for example send a 500 status code
-      return res.status(500).json({ error: error.message });
+      console.error('Error adding new admin:', error.message); // Log the error message
+      return res.status(500).json({ error: 'Internal Server Error', message: error.message });
     }
 
-    // Send a successful response, for example:
     res.status(201).json({ message: 'New admin added successfully', adminId: results.insertId });
+  });
+});
+
+// Get data of specific admin
+router.get('/api/adminaccount/:adminId', (req, res) => {
+  let adminId = req.params.adminId;
+
+  if (!adminId) { 
+    return res.status(400).send({ error: true, message: 'Please provide admin information' });
+  }
+
+  connection.query('SELECT * FROM AdminAccount WHERE AdminID = ?', [adminId], (error, results) => {
+    if (error) {
+      console.error('Error fetching admin data:', error);
+      return res.status(500).send({ error: true, message: 'Error fetching admin data' });
+    }
+    
+    if (results.length > 0) {
+      res.json(results[0]);
+      console.log(`Sending admin result for adminId = ${adminId}`);
+    } else {
+      res.status(404).send({ error: true, message: 'Admin not found' });
+    }
   });
 });
 
@@ -140,7 +161,6 @@ router.put('/api/adminaccount/:adminId', (req, res) => {
   const { adminId } = req.params;
   const { username, firstName, lastName, email, password } = req.body;
 
-  // Construct the SQL query to update admin data
   const updateQuery = `
     UPDATE AdminAccount 
     SET AdminUsername = ?, AdminFirstName = ?, AdminSurname = ?, AdminEmail = ?, AdminPassword = ?
@@ -148,14 +168,45 @@ router.put('/api/adminaccount/:adminId', (req, res) => {
 
   connection.query(updateQuery, [username, firstName, lastName, email, password, adminId], (error, results) => {
     if (error) {
-      // Handle the error, for example send a 500 status code
       return res.status(500).json({ error: error.message });
     }
 
-    // Send a successful response, for example:
     res.status(200).json({ message: 'Admin updated successfully' });
   });
 });
+
+// DELETE request to remove an existing admin
+router.delete('/api/adminaccount/:adminId', (req, res) => {
+  const { adminId } = req.params;
+
+  console.log(`Attempting to delete admin with ID: ${adminId}`); // Log the attempt
+
+  // First, delete associated records in the LoginHistory table
+  const deleteLoginHistoryQuery = 'DELETE FROM LoginHistory WHERE AdminID = ?';
+  connection.query(deleteLoginHistoryQuery, [adminId], (error, results) => {
+    if (error) {
+      console.error('Delete login history error:', error.message);
+      return res.status(500).json({ error: error.message });
+    }
+
+    const deleteQuery = 'DELETE FROM AdminAccount WHERE AdminID = ?';
+    connection.query(deleteQuery, [adminId], (error, results) => {
+      if (error) {
+        console.error('Delete admin error:', error.message); 
+        return res.status(500).json({ error: error.message });
+      }
+      if (results.affectedRows === 0) {
+        console.log('No admin found to delete with ID:', adminId); 
+        return res.status(404).json({ message: 'Admin not found' });
+      }
+      console.log(`Admin with ID: ${adminId} deleted successfully`); 
+      res.status(200).json({ message: 'Admin deleted successfully' });
+    });
+  });
+});
+
+
+
 
 // to receive all login history account from Marinekko datatbase
 router.get('/api/loginhistory', (req, res) => {

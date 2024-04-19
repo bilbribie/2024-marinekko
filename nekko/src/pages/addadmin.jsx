@@ -17,7 +17,14 @@ function AddAdmin() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const adminData = { username, firstName, lastName, email, password };
+    const adminData = {
+      username,
+      firstName,
+      lastName,
+      email,
+      password
+    };
+
     // Post request to API to add a new admin
     fetch('http://localhost:3001/api/adminaccount', {
       method: 'POST',
@@ -26,12 +33,16 @@ function AddAdmin() {
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        console.error('Network response was not ok');
+        console.error('Response status:', response.status);
+        console.error('Response text:', response.statusText);
+        return; // Exit the function early
       }
       return response.json();
     })
     .then(() => {
-      // Handle success here, maybe navigate to account management page
+      // If success
+      console.log('New admin added successfully');
       navigate('/accountmanage');
     })
     .catch((error) => {

@@ -1,41 +1,44 @@
+/* Assuming editadmin.css is your stylesheet */
 
-.admin-form {
-    background-color: #f3e9ee;
-    padding: 2rem;
-    border-radius: 8px;
-    max-width: 500px;
-    margin: 2rem auto;
-  }
-  
-  .admin-form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #333;
-  }
-  
-  .admin-form input[type="text"],
-  .admin-form input[type="email"],
-  .admin-form input[type="password"] {
-    width: calc(100% - 1rem);
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  /* Submit button styling */
-  .admin-form .button-submit {
-    width: 100%;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #e91e63;
-    color: white;
-    cursor: pointer;
-    margin-top: 1rem;
-  }
-  
-  .admin-form .button-submit:hover {
-    background-color: #c2185b;
-  }
-  
+.edit-admin-form {
+  background-color: #fff; /* Change to a light background */
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px; /* Adjust width as needed */
+  margin: 50px auto; /* Center the form on the page */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add some shadow for depth */
+}
+
+.edit-admin-form label {
+  display: block;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.edit-admin-form input[type="text"],
+.edit-admin-form input[type="email"],
+.edit-admin-form input[type="password"] {
+  width: 100%; /* Full width */
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.edit-admin-form button {
+  display: block; /* Make the button block-level to fill container */
+  width: 100%;
+  padding: 10px;
+  background-color: #e91e63; /* Match the pink theme */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.edit-admin-form button:hover {
+  background-color: #c2185b; /* Slightly darker on hover */
+}
+
+/* You might need to adjust other styles, but this should give you a starting point. */
