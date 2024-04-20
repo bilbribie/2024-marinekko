@@ -4,7 +4,8 @@ import Nav2 from '../components/nav2';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import './style/editproduct.css'
-import Popup from '../components/popup';
+import ConfirmPopup from '../components/confirmpopup';
+import ReportPopup from '../components/reportpopup';
 // import Popup from 'reactjs-popup';
 // import 'reactjs-popup/dist/index.css';
 
@@ -17,6 +18,13 @@ const EditProduct = () => {
     const mode = location.state.Mode;
 
 
+    const [popConfirm,setPopConfirm] = useState(false);
+    const [popReport,setPopReport] = useState(false);
+    const [error,setError] = useState(false);
+    // state for post or put method error
+    // state for showing data via popup
+
+
     const [name,setName] = useState(mode === "EDIT"?EditBag.name:'');
     const [category,setCategory] = useState(mode === "EDIT"?EditBag.category:null);
     const [color,setColor] = useState(mode === "EDIT"?EditBag.color:null);
@@ -24,8 +32,7 @@ const EditProduct = () => {
     const [price,setPrice] = useState(mode === "EDIT"?EditBag.price:null);
     const [description,setDescription] = useState(mode === "EDIT"?EditBag.description:'');
     const [pictureArray,setPictureArray] = useState(mode === "EDIT"?EditBag.BagImages:["","","",""]);
-    const [error,setError] = useState(false);
-    const [verifying,setVerifying] = useState(false);
+    // state for bag data
 
 
     
@@ -41,18 +48,17 @@ const EditProduct = () => {
         e.preventDefault();
         // alert(pictureArray);
         // id is 0 but in server, new id need to be allocated
-        setVerifying(true);
         const Bag = {id : 0,name : name,category : category, color : color ,stock : stock , price : price,
             description : description , BagImages : pictureArray}
         fetch('http://localhost:2999/post_bag_api',{ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Bag)})
         .then(response => response.json())
         .then(data => {
         if (data.message === 'successful') {
-            setError(true);
-        } else {
             setError(false);
+        } else {
+            setError(true);
         }
-        }).then(setVerifying(false))
+        }).then(() => {setPopReport(true)})
         .catch(error => {
         console.error('Error:', error);
         });
@@ -63,18 +69,17 @@ const EditProduct = () => {
         e.preventDefault();
         // alert(pictureArray);
         // id is 0 but in server, new id need to be allocated
-        setVerifying(true);
         const Bag = {id : EditBag.id,name : name,category : category, color : color ,stock : stock , price : price,
             description : description , BagImages : pictureArray}
         fetch('http://localhost:2999/put_bag_api',{ method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Bag)})
         .then(response => response.json())
         .then(data => {
         if (data.message === 'successful') {
-            setError(true);
-        } else {
             setError(false);
+        } else {
+            setError(true);
         }
-        }).then(setVerifying(false))
+        }).then(() => {setPopReport(true)})
         .catch(error => {
         console.error('Error:', error);
         });
@@ -220,29 +225,22 @@ const EditProduct = () => {
             <div class = "side-container" rows="4" cols="50" id  = "description"></div>
             </section>
 
-            <Popup trigger = {true}>
-                JISHFEAIUHFRIOA
-            </Popup>
-       
+            <ConfirmPopup trigger = {popConfirm} setTrigger = {setPopConfirm} callOnConfirm = {mode==="EDIT"?HandlePutBag:HandlePostBag}>
+            </ConfirmPopup>
 
-            {/* <button class = "confirm-button"  onClick={(e) => {mode==="EDIT"?HandlePutBag(e):HandlePostBag(e);console.log("d")}} >
+            <ReportPopup trigger = {popReport} setTrigger = {setPopReport} errorCondition = {error} mode = {mode}>
+            </ReportPopup>
+
+
+    
+            <button class = "confirm-button"  onClick={(e) => {setPopConfirm(true)}} >
                 {mode === "ADD"?"ADD":"SAVE"}
-            </button> */}
+            </button>
             
         </div>
 
 
-
-
         <Footer></Footer>
-
-
-
-
-
-
-
-
 
 
 
