@@ -4,7 +4,7 @@ import Nav2 from '../components/nav2';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import './style/editproduct.css'
-// import Popup from '../components/Popup';
+import Popup from '../components/popup';
 // import Popup from 'reactjs-popup';
 // import 'reactjs-popup/dist/index.css';
 
@@ -220,6 +220,9 @@ const EditProduct = () => {
             <div class = "side-container" rows="4" cols="50" id  = "description"></div>
             </section>
 
+            <Popup trigger = {true}>
+                JISHFEAIUHFRIOA
+            </Popup>
        
 
             {/* <button class = "confirm-button"  onClick={(e) => {mode==="EDIT"?HandlePutBag(e):HandlePostBag(e);console.log("d")}} >
