@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { useLocation } from 'react-router-dom'
 import Nav1 from '../components/nav1';
 import Header from '../components/header';
@@ -17,8 +17,7 @@ import './style/bag.css'
 //     PRIMARY KEY (`BagID`)
 //     );
 
-let shownBag;
-function Bag(props){
+function Bag(){
 
     const staticFilePath = "http://localhost:2999/picture";
     const [ imageIndex, setImageIndex ] = useState(0);
@@ -41,14 +40,8 @@ function Bag(props){
     //     BagImages : ["/bagSample1.jpg","/IMG_2023.jpg","/bagSample2.jpg","/IMG_2023.jpg"]}
     
     const location = useLocation();
+    let shownBag;
     shownBag = location.state;
-    // shownBag = state;
-
-    // if(!shownBag){
-    //     return <div>no data</div>;
-    // }else{
-    //     return <div>have data</div>
-    // }
 
     return (
         <div>
@@ -63,12 +56,12 @@ function Bag(props){
                     <div class = "pictureList">
                         
                         {shownBag.BagImages.map((I, idx) => 
-                        {return ( idx == imageIndex ? (<img class = "picture selected" src = {staticFilePath + I} onClick = {() => {setImageIndex(idx)}}></img>) : (<img class = "picture" src = {staticFilePath + I} onClick = {() => {setImageIndex(idx)}}></img>)
+                        {return ( idx === imageIndex ? (<img class = "picture selected" src = {staticFilePath + I} onClick = {() => {setImageIndex(idx)}} alt =""></img>) : (<img class = "picture" src = {staticFilePath + I} onClick = {() => {setImageIndex(idx)}} alt =""></img>)
                         );})}
 
                     </div>
 
-                    <img class = "mainPicture" src = {staticFilePath + shownBag.BagImages[imageIndex]}></img>
+                    <img class = "mainPicture" src = {staticFilePath + shownBag.BagImages[imageIndex]} alt =""></img>
 
                 </div>
 

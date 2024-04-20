@@ -13,7 +13,7 @@ function Footer() {
   //   navigate("/login",{state : data});
   // }
 
-  
+  // localStorage.setItem('isLoggedIn', 'true');
   return (
     <footer>
       <button class = "toTopButton" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Top of Page ^</button>
@@ -39,8 +39,8 @@ function Footer() {
           <section class = "container">
             <article>My account</article>
             <div class = "link">
-              <Link class = "noDecoration" to="/accountmanage">Manage Accounts</Link><br />
-              <Link class = "noDecoration" to="/productmanage">Manage Bags</Link><br /> <br />
+              <Link class = "noDecoration" to={localStorage.getItem("isLoggedIn")?"/accountmanage":"/login"}>Manage Accounts</Link><br />
+              <Link class = "noDecoration" to={localStorage.getItem("isLoggedIn")?"/productmanage":"/login"}>Manage Bags</Link><br /> <br />
             </div>
           </section>
 

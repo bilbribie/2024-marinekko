@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import Nav1 from '../components/nav1';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Nav2 from '../components/nav2';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import './style/login.css'
@@ -7,26 +8,35 @@ import './style/login.css'
 
 
 function Login() {
-
+  const navigate = useNavigate();
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
-  // const [isLogIn,setIsLogIn] = useState(false);
-  const [registedUser, setRegistedUser] = useState(null);
+  const [error, setError] = useState('');
+  // const [registedUser, setRegistedUser] = useState(null);
 
-  // useEffect(() => {
-  //   fetch('http://localhost:2999/getUser_api')
-  //   .then(res => res.json())
-  //   .then(data => {setRegistedUser(data)});
-  // },[isLogIn])
+
 
   const handleLogin = () => {
 
     const unverifiedUser = {userName : username,passWord : password};
-    // fetch('http://localhost:2999/login_api', 
-    // { method: 'POST', headers: { 'Content-Type': 'application/json' }, 
-    // body: JSON.stringify(unverifiedUser)})
-    // .then(setIsLogIn(!isLogIn))
-    // .catch(error => console.error(error));
+    fetch('http://localhost:2999/login_api', 
+    { method: 'POST', headers: { 'Content-Type': 'application/json' }, 
+    body: JSON.stringify(unverifiedUser)})
+    .then(response => response.json())
+    .then(data => {
+      if (data.message === 'Login successful') {
+        console.log('Login successful', data.user);
+        localStorage.setItem('isLoggedIn', 'true'); // Store login state
+        navigate('/login-success'); // Change to desired routeๅ
+      } else {
+        console.error('Login failed');
+        setError('Login Failed: ' + data.message);  // Set error message
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      setError('Login Failed: ' + error.message);  // Set error message
+    });
     
   }
 
@@ -45,7 +55,7 @@ function Login() {
     <div>
 
       <Header />
-      <Nav1 />
+      <Nav2 />
       {/*!registedUser?(<div>no user</div>):(<div>{registedUser}</div>)*/}
       <div class = "header_">
         <img  class = "userLogo" src={`${process.env.PUBLIC_URL}/assets/user1.png`} alt="user" />

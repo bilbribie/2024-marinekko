@@ -63,7 +63,7 @@
             justify-content: center;
         }
 
-        .catagoryButton{
+        .categoryButton{
             display: flex;
             justify-content: center;
             column-gap: 10px;

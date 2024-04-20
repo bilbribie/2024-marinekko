@@ -117,6 +117,25 @@ router.get('/getUser_api',cors(webOrigin),(req,res) => {
     
 })
 
+// router.post('/api/login', (req, res) => {
+//     const { username, password } = req.body;
+//     connection.query(
+//       'SELECT * FROM AdminAccount WHERE AdminUsername = ? AND AdminPassword = ?',
+//       [username, password],
+//       (error, results) => {
+//         if (error) {
+//           return res.status(500).json({ error });
+//         }
+//         if (results.length > 0) {
+//           console.log(`Login attempt with username: ${username} and password: ${password}`);
+//           res.json({ message: 'Login successful', user: results[0] });
+//         } else {
+//           res.status(401).json({ message: 'Login failed' });
+//         }
+//       }
+//     );
+//   });
+
 
 router.post('/login_api',cors(webOrigin),(req,res) => {
     // once found generate login log in the sql
@@ -125,22 +144,47 @@ router.post('/login_api',cors(webOrigin),(req,res) => {
     const userName = req.body.userName;
     const passWord = req.body.passWord;
     console.log(userName + "  " + passWord);
-    if(req.session.loginCount){
-        req.session.loginCount++;
-    }else{
-        req.session.loginCount = 1;
-    }
-    console.log(req.session.loginCount);
 
     for(let i = 0;i < adminAccounts.length;i++){
         if(adminAccounts[i].AdminUsername === userName && adminAccounts[i].AdminPassword === passWord){
             console.log("an user found");
-            req.session.user = adminAccounts[i];
             console.log(req.session.user);
-            return res.status(200).send(null);
+            res.json({ message: 'Login successful', user: adminAccounts[i] });
         }
     }
-    res.status(204).send(null);
+    res.status(401).json({ message: 'Login failed' });
+})
+
+router.post('/post_bag_api',cors(webOrigin),(req,res) =>{
+    console.log(req.body);
+
+    res.json({ message: 'successful' });
+
+    // for unsucessful case
+    // res.json({ message: 'unsuccessful' });
+
+    // maybe need to query inorder to find id that is not in the table
+    // insert bag on database usign SQL
+    // req.body.Bag.BagID  WRONG!!
+    // req.body.BagID  CORRECT!!!
+})
+
+
+router.put('/put_bag_api',cors(webOrigin),(req,res) =>{
+    console.log(req.body);
+
+    res.json({ message: 'successful'});
+
+
+    // for unsucessful case
+    // res.json({ message: 'unsuccessful'});
+
+
+
+    // the bag id is given in the body
+    // insert bag on database usign SQL
+    // req.body.Bag.BagID  WRONG!!
+    // req.body.BagID  CORRECT!!!
 })
 
 

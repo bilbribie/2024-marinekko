@@ -1,5 +1,4 @@
 import React from 'react';
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './com_style/header.css';
 
@@ -7,20 +6,21 @@ import './com_style/header.css';
 
 function Header(){
 
+    const staticFilePath = "http://localhost:2999/picture";
 
     return(
 
-        <section class = "header-container">
+        <section class = "header-component-container">
             
             <div class = 'left'></div>
 
             <div class = 'mid'>
-                <img class="logo" src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="Logo" />
+                <img class="logo" src={staticFilePath + "/logo.png"} alt="Logo" />
             </div>
 
             <div class = 'right'>
                 <Link  to="/login">
-                <img class="login-button" src={`${process.env.PUBLIC_URL}/assets/user.png`} alt="Login" />
+                <img class="login-button" src={staticFilePath + "/user.png"} alt="Login" />
                 </Link> 
             </div>
 
