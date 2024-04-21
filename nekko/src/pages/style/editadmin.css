@@ -1,44 +1,97 @@
-/* Assuming editadmin.css is your stylesheet */
+.page-container-editaccount{
 
-.edit-admin-form {
-  background-color: #fff; /* Change to a light background */
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 600px; /* Adjust width as needed */
-  margin: 50px auto; /* Center the form on the page */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add some shadow for depth */
-}
-
-.edit-admin-form label {
-  display: block;
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-.edit-admin-form input[type="text"],
-.edit-admin-form input[type="email"],
-.edit-admin-form input[type="password"] {
-  width: 100%; /* Full width */
-  padding: 10px;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.edit-admin-form button {
-  display: block; /* Make the button block-level to fill container */
   width: 100%;
-  padding: 10px;
-  background-color: #e91e63; /* Match the pink theme */
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  margin-top: 1rem;
-  cursor: pointer;
-}
+  height: fit-content;
+  background-color: rgb(243, 243, 243);
 
-.edit-admin-form button:hover {
-  background-color: #c2185b; /* Slightly darker on hover */
-}
+  .page-title{
 
-/* You might need to adjust other styles, but this should give you a starting point. */
+      .logo{
+          width : 40px;
+          height: 40px;
+      }
+
+      padding: 20px;
+      background-color: rgb(222, 222, 222);
+      width: auto;
+      height: 80px;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      column-gap: 20px;
+
+  }
+
+  .editor-section{
+      background-color: rgb(255, 255, 255);
+      width: auto;
+      height: fit-content;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      display : flex;
+      justify-content: center;
+  }
+
+  .editor-container{
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 20px;
+
+      .editor-header{
+          display: flex;
+          justify-content: flex-start;
+          padding-left: 20px;
+          align-items: center;
+          width: 100%;
+          height: 80px;
+          background-color: pink;
+          border-top-left-radius: 20px ;
+          border-top-right-radius: 20px ;
+      }   
+
+      width : 500px;
+      height: fit-content;
+      padding-bottom: 40px;
+      background-color: rgb(220, 220, 220);
+      border-radius: 20px;
+
+      .input-container{
+
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+
+          .inputBox{
+              display: flex;
+              align-items: center;
+              padding-left : 20px;
+              width: 300px;
+              height: 40px;
+              border-radius: 15px;
+              background-color: white;
+              border-width: 0px;
+          }
+
+      }
+
+      .confirmButton{
+
+          border-radius: 20px;
+          width: 300px;
+          height: 80px;
+          background-color: rgb(120, 231, 231);
+          border-width: 0px;
+
+      }
+
+      
+
+  }
+
+  
+
+
+}

@@ -1,7 +1,6 @@
 import React from 'react'
 import './com_style/confirmpopup.css';
 
-
 function ConfirmPopup(props){
     const staticFilePath = "http://localhost:2999/picture";
     return (props.trigger) ? (

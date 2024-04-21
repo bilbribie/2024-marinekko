@@ -10,7 +10,7 @@ import ReportPopup from '../components/reportpopup';
 
 function ProductManage() {
     
-    const staticFilePath = "http://localhost:2999/picture";
+    const staticFilePath = "http://localhost:2999/picture"; // this may be changed
 
     const itemPerPage = 10;
     const [totalPage,setTotalPage] = useState(1);
