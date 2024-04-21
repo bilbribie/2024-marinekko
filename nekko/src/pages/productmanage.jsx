@@ -38,7 +38,7 @@ function ProductManage() {
             <td>{product.BagName || 'N/A'}</td>
             <td>{product.BagCategory || 'N/A'}</td>
             <td>{product.BagColor.join(', ')}</td>
-            <td>{product.BagStock}</td>
+            <td>{product.stock}</td>
             <td>{`${product.BagPrice}.00`}</td>
             <td>
               <Link to={`/editproduct/${product.BagID}`}>
@@ -98,9 +98,9 @@ const deleteProduct = (productId) => {
             </div>
           </div>
           <div class="container center">
-            <div class="catagoryButton">
+            <div class="categoryButton">
               <img class="searchButton" src={"./assets/down-arrow.png"}></img>
-              catagory
+              category
             </div>
           </div>
           <div class="container"></div>

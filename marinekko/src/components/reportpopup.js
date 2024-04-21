@@ -10,10 +10,10 @@ function ReportPopup(props){
             <div class = {(props.errorCondition?"reportpopup-container reportFailure":"reportpopup-container reportSuccess")}>
 
                 <section class = "report">
-                    {(props.mode==="EDIT"?"Saved":"Added") + " " + (props.errorCondition?"Failure ":"Successfully ")}
+                    {(props.mode==="EDIT"?"Saved":(props.mode==="ADD"?"Added":"Deleted")) + " " + (props.errorCondition?"Failure ":"Successfully ")}
                 </section>
 
-                <button class = "closeButton" onClick={() => {props.setTrigger(false)}}>
+                <button class = "closeButton" onClick={() => {if(props.setTriggerReload != null) props.setTriggerReload(prev => !prev);props.setTrigger(false)}}>
                     close
                 </button>
   

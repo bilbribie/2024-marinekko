@@ -22,14 +22,14 @@ function Home() {
   { name: "Wallet", img: process.env.PUBLIC_URL + "/assets/wallet.jpg" }];
 
   // bag objects
-  // {name, catagory, price, img}
+  // {name, category, price, img}
 
   // const BI = ["/bagSample1.jpg","/IMG_2023.jpg","/bagSample2.jpg","/IMG_2023.jpg"]
   // const desp = "The Mono Mini Tote is made of organic cotton. The large Marimekko “M” is printed in the front. The small bag has handles and an open pocket on the outside\nSIZE\nHeight: 23.00 cm\nWidth: 31.00 cm\nDepth: 14.50 cm\nMain Material: 100 % Cotton\n";
-  // let recommendedArray = [{bagId : 1,name : "Bag1", catagory : "Tota Bag", BagStock : 3, price : 2000, color : "Red" ,img : "/bagSample1.jpg",BagImages : BI,BagDescription : desp},
-  //                         {bagId : 2,name : "Bag2", catagory : "Tota Bag", BagStock : 30, price : 2100, color : "Blue" , img : "/bagSample2.jpg",BagImages : BI,BagDescription : desp},
-  //                         {bagId : 3,name : "Bag3", catagory : "Shoulder Bag", BagStock : 1, price : 2200, color : "Yellow" , img : "/bagSample1.jpg",BagImages : BI,BagDescription : desp},
-  //                         {bagId : 4,name : "Bag4", catagory : "Shoulder Bag", BagStock : 5, price : 6300, color : "Red" , img : "/bagSample2.jpg",BagImages : BI,BagDescription : desp}]
+  // let recommendedArray = [{bagId : 1,name : "Bag1", category : "Tota Bag", stock : 3, price : 2000, color : "Red" ,img : "/bagSample1.jpg",BagImages : BI,description : desp},
+  //                         {bagId : 2,name : "Bag2", category : "Tota Bag", stock : 30, price : 2100, color : "Blue" , img : "/bagSample2.jpg",BagImages : BI,description : desp},
+  //                         {bagId : 3,name : "Bag3", category : "Shoulder Bag", stock : 1, price : 2200, color : "Yellow" , img : "/bagSample1.jpg",BagImages : BI,description : desp},
+  //                         {bagId : 4,name : "Bag4", category : "Shoulder Bag", stock : 5, price : 6300, color : "Red" , img : "/bagSample2.jpg",BagImages : BI,description : desp}]
 
   const [bag, setBag] = useState(null);
 
@@ -44,10 +44,10 @@ function Home() {
     });
   }, []);
 
-  // let recommendedArray = [{ bagId: bag.BagID, name: bag.BagName, catagory: bag.BagCategory, BagStock: bag.BagStock, price: bag.BagPrice, color: bag.BagColor, img: process.env.PUBLIC_URL + "/assets/shoulder.jpg", BagImages: process.env.PUBLIC_URL + "/assets/shoulder.jpg", BagDescription: bags.BagDescription },
-  // // { bagId: 2, name: "Bag2", catagory: "Tota Bag", BagStock: 30, price: 2100, color: "Blue", img: "/bagSample2.jpg", BagImages: BI, BagDescription: desp },
-  // // { bagId: 3, name: "Bag3", catagory: "Shoulder Bag", BagStock: 1, price: 2200, color: "Yellow", img: "/bagSample1.jpg", BagImages: BI, BagDescription: desp },
-  // // { bagId: 4, name: "Bag4", catagory: "Shoulder Bag", BagStock: 5, price: 6300, color: "Red", img: "/bagSample2.jpg", BagImages: BI, BagDescription: desp }
+  // let recommendedArray = [{ bagId: bag.BagID, name: bag.BagName, category: bag.BagCategory, stock: bag.stock, price: bag.BagPrice, color: bag.BagColor, img: process.env.PUBLIC_URL + "/assets/shoulder.jpg", BagImages: process.env.PUBLIC_URL + "/assets/shoulder.jpg", description: bags.description },
+  // // { bagId: 2, name: "Bag2", category: "Tota Bag", stock: 30, price: 2100, color: "Blue", img: "/bagSample2.jpg", BagImages: BI, description: desp },
+  // // { bagId: 3, name: "Bag3", category: "Shoulder Bag", stock: 1, price: 2200, color: "Yellow", img: "/bagSample1.jpg", BagImages: BI, description: desp },
+  // // { bagId: 4, name: "Bag4", category: "Shoulder Bag", stock: 5, price: 6300, color: "Red", img: "/bagSample2.jpg", BagImages: BI, description: desp }
   // ]
 
   return (
@@ -96,12 +96,12 @@ function Home() {
 
         <section class="catagories-container">
 
-          {catagoriesArray.map((catagory) => {
+          {catagoriesArray.map((category) => {
             return (
-              <div class="catagory-container">
-                <img src={catagory.img} class="catagory-picture-container"></img>
-                <div class="catagory-name-container">
-                  {catagory.name}
+              <div class="category-container">
+                <img src={category.img} class="category-picture-container"></img>
+                <div class="category-name-container">
+                  {category.name}
                 </div>
               </div>
             )
@@ -119,7 +119,7 @@ function Home() {
           <p>{bag.BagID}</p>
         </section>
 
-        {/* <Recommend bagsArray = {recommendedArray}></Recommend>  */}
+        {/* <Recommend products = {recommendedArray}></Recommend>  */}
 
       </div> {/* page-container*/}
 

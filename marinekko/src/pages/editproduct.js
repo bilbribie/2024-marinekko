@@ -17,7 +17,7 @@ const EditProduct = () => {
     EditBag = location.state.EditBag;
     const mode = location.state.Mode;
 
-
+    // pop up control state
     const [popConfirm,setPopConfirm] = useState(false);
     const [popReport,setPopReport] = useState(false);
     const [error,setError] = useState(false);
@@ -53,11 +53,7 @@ const EditProduct = () => {
         fetch('http://localhost:2999/post_bag_api',{ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Bag)})
         .then(response => response.json())
         .then(data => {
-        if (data.message === 'successful') {
-            setError(false);
-        } else {
-            setError(true);
-        }
+            setError(data.error);
         }).then(() => {setPopReport(true)})
         .catch(error => {
         console.error('Error:', error);
@@ -74,11 +70,7 @@ const EditProduct = () => {
         fetch('http://localhost:2999/put_bag_api',{ method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Bag)})
         .then(response => response.json())
         .then(data => {
-        if (data.message === 'successful') {
-            setError(false);
-        } else {
-            setError(true);
-        }
+            setError(data.error);
         }).then(() => {setPopReport(true)})
         .catch(error => {
         console.error('Error:', error);
@@ -153,7 +145,7 @@ const EditProduct = () => {
             
 
             {/* "Tote bag","Shoulder Bag","Backpack","Handbag","Wallet" */}
-            <section class = "editor-container"> {/* product catagory*/}
+            <section class = "editor-container"> {/* product category*/}
                 
             <div class = "side-container">
                 Categories:
@@ -225,11 +217,7 @@ const EditProduct = () => {
             <div class = "side-container" rows="4" cols="50" id  = "description"></div>
             </section>
 
-            <ConfirmPopup trigger = {popConfirm} setTrigger = {setPopConfirm} callOnConfirm = {mode==="EDIT"?HandlePutBag:HandlePostBag}>
-            </ConfirmPopup>
-
-            <ReportPopup trigger = {popReport} setTrigger = {setPopReport} errorCondition = {error} mode = {mode}>
-            </ReportPopup>
+            
 
 
     
@@ -241,6 +229,16 @@ const EditProduct = () => {
 
 
         <Footer></Footer>
+
+        {/* pop up tags it can be anywhere but let say put them here */}
+        
+        <ConfirmPopup trigger = {popConfirm} setTrigger = {setPopConfirm} callOnConfirm = {mode==="EDIT"?HandlePutBag:HandlePostBag}>
+        </ConfirmPopup>
+
+        <ReportPopup trigger = {popReport} setTrigger = {setPopReport} errorCondition = {error} mode = {mode} setTriggerReload = {null}>
+        </ReportPopup>
+
+        {/* pop up tags it can be anywhere but let say put them here */}
 
 
 

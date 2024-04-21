@@ -5,6 +5,8 @@ import Nav2 from './components/nav2';
 import Footer from './components/footer';
 import { useParams, useNavigate } from 'react-router-dom';
 import './style/editadmin.css';
+import ConfirmPopup from './components/confirmpopup';
+import ReportPopup from './components/reportpopup';
 
 function EditAdmin() {
   const [username, setUsername] = useState('');

@@ -12,13 +12,13 @@ CREATE TABLE Bag (
   `BagCategory` varchar(20) NOT NULL,
   `BagColor` varchar(20) NOT NULL,
   `BagPrice` decimal(10,2) NOT NULL,
-  `BagStock` int(100) NOT NULL,
-  `BagDescription` varchar(500) NOT NULL,
+  `stock` int(100) NOT NULL,
+  `description` varchar(500) NOT NULL,
   PRIMARY KEY (`BagID`)
   );
 
 /* insert bag info*/
-INSERT INTO Bag (`BagID`, `BagName`, `BagCategory`, `BagColor`, `BagPrice`, `BagStock`, `BagDescription`) VALUES
+INSERT INTO Bag (`BagID`, `BagName`, `BagCategory`, `BagColor`, `BagPrice`, `stock`, `description`) VALUES
 
 (018801, 'PILLOW WEEKENDER TAIFUUNI', 'Shoulder Bag', 'Pink', 9900, 32, 'The padded Pillow Weekender bag is made of recycled polyester and it features the topstitched Taifuuni pattern. The quilted bag has padded handles and a long, padded shoulder strap that can be tied to the right length. The bag closes with a zipper and has a zipper pocket on the inside. The Marimekko “M” is embroidered on the front. SIZE Height: 33.00 cm Width: 45.00 cm Depth: 19.50 cm Main Material: 100 % Polyester'),
 

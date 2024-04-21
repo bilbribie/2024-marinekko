@@ -12,8 +12,8 @@ import './style/bag.css'
 //     `BagCategory` varchar(20) NOT NULL,
 //     `BagColor` varchar(20) NOT NULL,
 //     `BagPrice` decimal(10,2) NOT NULL,
-//     `BagStock` int(100) NOT NULL,
-//     `BagDescription` varchar(500) NOT NULL,
+//     `stock` int(100) NOT NULL,
+//     `description` varchar(500) NOT NULL,
 //     PRIMARY KEY (`BagID`)
 //     );
 
@@ -22,21 +22,24 @@ function Bag(){
     const staticFilePath = "http://localhost:2999/picture";
     const [ imageIndex, setImageIndex ] = useState(0);
 
-    const BI = ["/bagSample1.jpg","/IMG_2023.jpg","/bagSample2.jpg","/IMG_2023.jpg"]
+    const BI = ["https://www.lynaccs.com/media/catalog/product/l/l/ll24cbs165_wht600_1.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1123&width=795&canvas=795:1123.jpg",
+"https://www.lynaround.com/media/catalog/product/a/2/a24c2wg011_beg000_1.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1123&width=795&canvas=795:1123.jpg",
+"https://www.lynaround.com/media/catalog/product/a/2/a24c6wg001_red000_1_1.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1123&width=795&canvas=795:1123.jpg",
+"https://www.lynaccs.com/media/catalog/product/l/l/ll23fbf180_blk000_1.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1123&width=795&canvas=795:1123.jpg"]
     const desp = "The Mono Mini Tote is made of organic cotton. The large Marimekko “M” is printed in the front. The small bag has handles and an open pocket on the outside\nSIZE\nHeight: 23.00 cm\nWidth: 31.00 cm\nDepth: 14.50 cm\nMain Material: 100 % Cotton\n";
-    let recommendedArray = [{bagId : 1,name : "Bag1", catagory : "Tota Bag", BagStock : 3, price : 2000, color : "Red" ,img : "/bagSample1.jpg",BagImages : BI,BagDescription : desp},
-                            {bagId : 2,name : "Bag2", catagory : "Tota Bag", BagStock : 30, price : 2100, color : "Blue" , img : "/bagSample2.jpg",BagImages : BI,BagDescription : desp},
-                            {bagId : 3,name : "Bag3", catagory : "Shoulder Bag", BagStock : 1, price : 2200, color : "Yellow" , img : "/bagSample1.jpg",BagImages : BI,BagDescription : desp},
-                            {bagId : 4,name : "Bag4", catagory : "Shoulder Bag", BagStock : 5, price : 6300, color : "Red" , img : "/bagSample2.jpg",BagImages : BI,BagDescription : desp}]
+    let recommendedArray = [{bagId : 1,name : "Bag1", category : "Tota Bag", stock : 3, price : 2000, color : "Red" ,BagImages : BI,description : desp},
+                            {bagId : 2,name : "Bag2", category : "Tota Bag", stock : 30, price : 2100, color : "Blue" ,BagImages : BI,description : desp},
+                            {bagId : 3,name : "Bag3", category : "Shoulder Bag", stock : 1, price : 2200, color : "Yellow" ,BagImages : BI,description : desp},
+                            {bagId : 4,name : "Bag4", category : "Shoulder Bag", stock : 5, price : 6300, color : "Red" ,BagImages : BI,description : desp}]
 
 
     // const shownBag = {bagId : 1,
     //     name : "your Favorite bag",
-    //     Catagory : "Backpack",
+    //     category : "Backpack",
     //     color : ["magenta","purple"],
     //     Price : 2999,
-    //     BagStock : 3,
-    //     BagDescription : "The Mono Mini Tote is made of organic cotton. The large Marimekko “M” is printed in the front. The small bag has handles and an open pocket on the outside\nSIZE\nHeight: 23.00 cm\nWidth: 31.00 cm\nDepth: 14.50 cm\nMain Material: 100 % Cotton\n",
+    //     stock : 3,
+    //     description : "The Mono Mini Tote is made of organic cotton. The large Marimekko “M” is printed in the front. The small bag has handles and an open pocket on the outside\nSIZE\nHeight: 23.00 cm\nWidth: 31.00 cm\nDepth: 14.50 cm\nMain Material: 100 % Cotton\n",
     //     BagImages : ["/bagSample1.jpg","/IMG_2023.jpg","/bagSample2.jpg","/IMG_2023.jpg"]}
     
     const location = useLocation();
@@ -56,18 +59,18 @@ function Bag(){
                     <div class = "pictureList">
                         
                         {shownBag.BagImages.map((I, idx) => 
-                        {return ( idx === imageIndex ? (<img class = "picture selected" src = {staticFilePath + I} onClick = {() => {setImageIndex(idx)}} alt =""></img>) : (<img class = "picture" src = {staticFilePath + I} onClick = {() => {setImageIndex(idx)}} alt =""></img>)
+                        {return ( idx === imageIndex ? (<img class = "picture selected" src = {I} onClick = {() => {setImageIndex(idx)}} alt =""></img>) : (<img class = "picture" src = {I} onClick = {() => {setImageIndex(idx)}} alt =""></img>)
                         );})}
 
                     </div>
 
-                    <img class = "mainPicture" src = {staticFilePath + shownBag.BagImages[imageIndex]} alt =""></img>
+                    <img class = "mainPicture" src = {shownBag.BagImages[imageIndex]} alt =""></img>
 
                 </div>
 
                 <div class = "description-container">
-                    <article class = "catagory-container">
-                        {shownBag.catagory}
+                    <article class = "category-container">
+                        {shownBag.category}
                     </article>
                     <article class = "name-container">
                         {shownBag.name}
@@ -79,7 +82,7 @@ function Bag(){
                     <section class = "stock-section">
                         <div class = "stock">stock</div>
                         <article class = "stock-container">
-                            {shownBag.BagStock}
+                            {shownBag.stock}
                         </article>
                         <div></div>
                     </section>
@@ -88,7 +91,7 @@ function Bag(){
 
                     <article class = "info">Info</article>
 
-                    {shownBag.BagDescription.split("\n").map(
+                    {shownBag.description.split("\n").map(
                         (text) => {return (<article>{text}</article>)}
                     )}
                     
@@ -103,7 +106,7 @@ function Bag(){
 
             </div>
 
-            <Recommend bagsArray = {recommendedArray}></Recommend>
+            <Recommend products = {recommendedArray}></Recommend>
             <Footer></Footer>
         </div>
     );
