@@ -1,160 +1,97 @@
-
-.page-container-productmanagement{
+.page-container-productmanagement {
     width: 100%;
-    height: fit-content;
-    background-color: rgb(243, 243, 243);
-
-    .logo{
-        width : 40px;
-        height: 40px;
-    }
-
-    .nav{
-
-        padding: 20px;
-        background-color: rgb(222, 222, 222);
-        width: auto;
-        height: 80px;
-
-        .left{
-            width: 50%;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            column-gap: 20px;
-        }
-
-        .right{
-            width: 50%;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .addButton{
-            border: none;
-            width: 150px;
-            padding : 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: rgb(125, 196, 224);
-            border-radius: 30px;
-
-        }
-        
-    }
-
-    .mainNav{
-        /* background-color: blue; */
-        width: 100%;
-        height: 100px;
-        display: flex;
-        align-items: center;
-        padding-left: 20px;
-
-        .searchBar{
-            padding-left: 20px;
-            padding-right: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: white;
-            width: 250px;
-            height: 40px;
-            border-width: 0.1px;
-            border-radius: 20px;
-        }
-
-        .searchInput{
-            border: none;
-        }
-
-        .searchButton{
-            width: 20px;
-            height: 20px;
-        }
-
-
-    }
-
-    .edit-table-container{
-        margin: 20px;
-        padding: 20px;
-        background-color: white;
-        width: auto;
-        height: fit-content;
-        border-radius: 20px;
-
-        .edit-table{
-            /* background-color: rgb(13, 107, 107); */
-            width: 100%;
-
-            img{
-                width: 50px;
-                height: 50px;
-            }
-
-            .lowerBrightness{
-                filter : brightness(90%);
-            }
-
-            .editButton{
-                filter : brightness(10%);
-            }
-
-            th{
-                font-weight: 100;
-                color: #efa5c7; 
-            }
-            tr{
-                margin-top: 5px;
-                margin-bottom: 5px;
-            }
-            
-            thead tr{
-                border-bottom: solid black 1px;
-            }
-
-            tr th:nth-child(1){
-                /* No. */
-                width: 5%;
-            }
-            tr th:nth-child(2){
-                /* Img. */
-                width: 10%;  
-            }
-            tr th:nth-child(3){
-                /* Name */
-                width: 15%;
-            }
-            tr th:nth-child(4){
-                /* catagories */
-                width: 15%;
-            }
-            tr th:nth-child(5){
-                /* stock */
-                width: 15%; 
-            }
-            tr th:nth-child(6){
-                /* price */
-                width: 15%;
-            }
-            tr th:nth-child(7){
-                /* add */
-                width: 15%;
-            }
-            tr th:nth-child(8){
-                /* delete */
-                width: 5%;
-            }
-            tr th:nth-child(9){
-                /* delete */
-                width: 5%;
-            }
-
-        }
-
-    }
-
-
+    padding: 20px;
+    background-color: #f3f3f3;
 }
+
+.logo {
+    width: 40px;
+    height: 40px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #dedede;
+    align-items: center;
+}
+
+.addButton {
+    border: none;
+    width: 150px;
+    padding: 10px;
+    background-color: #7dc4e0;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.mainNav {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.categoryButton, .searchBar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 0.1px solid #ccc;
+    border-radius: 20px;
+    padding: 0 20px;
+}
+
+.searchInput {
+    border: none;
+    margin-right: 10px;
+    flex-grow: 1;
+}
+
+.searchButton {
+    width: 20px;
+    height: 20px;
+}
+
+.product-table-container {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: black;
+}
+
+.product-table th {
+    font-weight: 100;
+    color: #efa5c7;
+    text-align: left;
+    padding: 8px;
+}
+
+.product-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-table img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.editButton, .deleteButton {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+

@@ -76,22 +76,22 @@ function Bag(props) {
             </div>
           </div>
           <div className="description-container">
-            <article className="category-container">{bagDetails.BagCategory}</article>
+            <article className="catagory-container">{bagDetails.BagCategory}</article>
             <article className="name-container">{bagDetails.BagName}</article>
             <article className="color-container">{bagDetails.BagColor}</article>
             <section className="stock-section">
               <div className="stock">stock</div>
-              <article className="stock-container">{bagDetails.stock}</article>
+              <article className="stock-container">{bagDetails.BagStock}</article>
             </section>
             <hr className="horizontal-seperator-description" />
             <article className="info">Info</article>
-            {bagDetails.description.split("\n").map((text, index) => <article key={index}>{text}</article>)}
+            {bagDetails.BagDescription.split("\n").map((text, index) => <article key={index}>{text}</article>)}
           </div>
         </section>
         <hr className="horizontal-seperator-pink" />
         <section className="recommend-text">You might also like</section>
       </div>
-      <Recommend products={recommendedArray} />
+      <Recommend bagsArray={recommendedArray} />
       <Footer />
     </div>
   );

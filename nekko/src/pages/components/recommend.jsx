@@ -2,15 +2,15 @@ import React from 'react';
 import './com_style/recommend.css';
 import { Link } from 'react-router-dom';
 
-function Recommend({ products }) {
-    if (!products || products.length === 0) {
+function Recommend({ bagsArray }) {
+    if (!bagsArray || bagsArray.length === 0) {
         return <div>Loading...</div>; // Or any other placeholder
     }
 
     return (
         <div className="component-container">
           <section className="recommended-container">
-            {products.map(bag => (
+            {bagsArray.map(bag => (
               <Link key={bag.BagID} className="recommended-bag-container" to={`/bag/${bag.BagID}`} state={bag}>
                 {bag.imageUrl && <img src={bag.imageUrl} className="img-container" alt={bag.BagName} />}
                 <div className="description-container">

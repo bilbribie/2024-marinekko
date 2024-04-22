@@ -1,143 +1,60 @@
 /* accountmanage.css */
-.page-container-accountmanagement{
-
-  width: 100%;
-  height: fit-content;
-  background-color: rgb(243, 243, 243);
-
-  .logo{
-      width : 40px;
-      height: 40px;
+.page-container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header styling */
+  .admin-header {
+    background-color: #f3e9ee;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #333;
+    font-size: 1.5rem;
+  }
+  
+  /* Admin list and table styling */
+  .admin-list {
+    width: 100%;
+    border-collapse: collapse;
   }
 
-  .nav{
-
-      padding: 20px;
-      background-color: rgb(222, 222, 222);
-      width: auto;
-      height: 80px;
-
-      .left{
-          width: 50%;
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-          column-gap: 20px;
-      }
-
-      .right{
-          width: 50%;
-          display: flex;
-          justify-content: flex-end;
-      }
-
-      .addButton{
-          border: none;
-          width: 150px;
-          padding : 10px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: rgb(125, 196, 224);
-          border-radius: 30px;
-
-      }
-      
-  }
-
-  .mainNav{
-      /* background-color: blue; */
-      width: 100%;
-      height: 100px;
-      display: flex;
-      align-items: center;
-      padding-left: 20px;
-
-      .searchBar{
-          padding-left: 20px;
-          padding-right: 20px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          background-color: white;
-          width: 250px;
-          height: 40px;
-          border-width: 0.1px;
-          border-radius: 20px;
-      }
-
-      .searchInput{
-          border: none;
-      }
-
-      .searchButton{
-          width: 20px;
-          height: 20px;
-      }
-
-
-  }
-
-  .edit-table-container{
-      margin: 20px;
-      padding: 20px;
-      background-color: white;
-      width: auto;
-      height: fit-content;
-      border-radius: 20px;
-
-      .edit-table{
-          /* background-color: rgb(13, 107, 107); */
-          width: 100%;
-
-          img{
-              width: 50px;
-              height: 50px;
-          }
-
-         
-          .editButton{
-              filter : brightness(10%);
-          }
-
-          th{
-              font-weight: 100;
-              color: #efa5c7; 
-          }
-          tr{
-              margin-top: 5px;
-              margin-bottom: 5px;
-          }
-          
-          thead tr{
-              border-bottom: solid black 1px;
-          }
-
-          tr th:nth-child(1){
-              /* No. */
-              width: 30%;
-          }
-          tr th:nth-child(2){
-              /* Img. */
-              width: 30%;  
-          }
-          tr th:nth-child(3){
-              /* Name */
-              width: 30%;
-          }
-          tr th:nth-child(4){
-              /* catagories */
-              width: 5%;
-          }
-          tr th:nth-child(5){
-              /* stock */
-              width: 5%; 
-          }
-
-      }
-
-  }
-
-
+  .admin-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ccc; /* Optional: adds a line between rows */
 }
+
+.admin-row > div,
+.admin-row > button {
+    margin-right: 10px;
+}
+
+.admin-row > div {
+    flex-grow: 1;
+}
+.admin-row img {
+  width: 24px; /* Adjust size as needed */
+  height: auto;
+}
+  
+  /* Footer styling */
+  .footer {
+    background-color: #f3e9ee;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .footer a {
+    color: #333;
+    text-decoration: none;
+  }
   

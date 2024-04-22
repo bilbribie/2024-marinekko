@@ -89,7 +89,7 @@ function Home() {
         <section className="recommended-header-container">
           For you
         </section>
-        <Recommend products={recommendedArray} />
+        <Recommend bagsArray={recommendedArray} />
       </div>
       <Footer />
     </div>

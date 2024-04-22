@@ -1,3 +1,4 @@
+// server
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
@@ -20,8 +21,11 @@ const connection = mysql.createConnection({
   database: process.env.MYSQL_DATABASE
 });
 
-connection.connect(error => {
-  if (error) throw error;
+connection.connect((err) => {
+  if (err) {
+    console.error('Error connecting to the database:', err.message);
+    return;
+  }
   console.log('Successfully connected to the Marinekko database.');
 });
 
@@ -35,24 +39,34 @@ router.get('/', (req, res) => {
 // to receive all bags from Marinekko datatbase
 router.get('/api/bag', (req, res) => {
   connection.query('SELECT * FROM Bag', (error, results) => {
-    if (error) throw error;
+    if (error) {
+      console.error('Error fetching bags:', error);
+      return res.status(500).json({ error: 'Internal Server Error', message: error.message });
+    }
     res.json(results);
   });
 });
 
-
 // to receive specific bag from Marinekko datatbase
 router.get('/api/bag/:id', (req, res) => {
-  let bagId = req.params.id;
+  const bagId = req.params.id;
 
   if (!bagId) {
-    return res.status(400).send({ error: true, message: 'Please provide product information' })
+    return res.status(400).json({ error: true, message: 'Please provide a bag ID' });
   }
+
   connection.query('SELECT * FROM Bag WHERE BagID = ?', [bagId], (error, results) => {
-    if (error) throw error;
+    if (error) {
+      console.error(`Error fetching bag with ID ${bagId}:`, error);
+      return res.status(500).json({ error: 'Internal Server Error', message: error.message });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: true, message: 'Bag not found' });
+    }
+
     res.json(results[0]);
-    console.log(`Sending product result of bagId = ${bagId}`);
-  })
+  });
 });
 
 // to query search bag in Marinekko datatbase
@@ -94,7 +108,7 @@ router.post('/api/login', (req, res) => {
     [username, password],
     (error, results) => {
       if (error) {
-        return res.status(500).json({ error });
+        return res.status(500).json({ error: error.message }); // Fixing the error handling here
       }
       if (results.length > 0) {
         console.log(`Login attempt with username: ${username} and password: ${password}`);
@@ -253,6 +267,120 @@ router.get('/api/image/:id', (req, res) => {
     console.log(`Sending image result of bagId = ${bagId}`);
   })
 });
+
+// POST request to add a new bag
+router.post('/api/bag', (req, res) => {
+  const { productName, productCategory, productColor, productPrice, productStock, productDescription } = req.body;
+
+  // Insert new bag
+  connection.query(
+    'INSERT INTO Bag (BagName, BagCategory, BagColor, BagPrice, BagStock, BagDescription) VALUES (?, ?, ?, ?, ?, ?)',
+    [productName, productCategory, productColor, productPrice, productStock, productDescription],
+    function(error, bagResults) {
+      if (error) {
+        console.error('Error adding new bag:', error.message);
+        return res.status(500).json({ error: 'Internal Server Error', message: error.message });
+      }
+
+      const bagId = bagResults.insertId;
+
+      res.status(201).json({ message: 'New bag added successfully', bagId });
+    }
+  );
+});
+
+// POST request to add new images
+router.post('/api/image', (req, res) => {
+  const { bagId, bagname, image1, image2, image3 } = req.body;
+
+  // Insert images
+  connection.query(
+    'INSERT INTO Images (BagID, imagename, image_data1, image_data2, image_data3) VALUES (?, ?, ?, ?, ?) ',
+    [bagId, bagname, image1, image2, image3],
+    function(error) {
+      if (error) {
+        console.error('Error adding new images:', error.message);
+        return res.status(500).json({ error: 'Internal Server Error', message: error.message });
+      }
+
+      res.status(201).json({ message: 'New images added successfully' });
+    }
+  );
+});
+
+// Assuming you have initialized your express app and set up your database connection
+
+// DELETE request to delete both bag and image
+router.delete('/api/bag/:bagId', (req, res) => {
+  const bagId = req.params.bagId;
+
+  // First, delete the image associated with the bag
+  connection.query(
+    'DELETE FROM Images WHERE BagID = ?',
+    [bagId],
+    (imageError, imageResults) => {
+      if (imageError) {
+        console.error('Error deleting image:', imageError);
+        return res.status(500).json({ error: 'Internal Server Error', message: imageError.message });
+      }
+
+      // Then, delete the bag itself
+      connection.query(
+        'DELETE FROM Bag WHERE BagID = ?',
+        [bagId],
+        (bagError, bagResults) => {
+          if (bagError) {
+            console.error('Error deleting bag:', bagError);
+            return res.status(500).json({ error: 'Internal Server Error', message: bagError.message });
+          }
+
+          res.status(200).json({ message: 'Bag and associated image deleted successfully' });
+        }
+      );
+    }
+  );
+});
+
+// Update bag
+router.put('/api/bag/:id', (req, res) => {
+  const { id } = req.params;
+  const { productName, productCategory, productColor, productPrice, productStock, productDescription } = req.body;
+
+  // Update product details in the database
+  connection.query(
+    'UPDATE Bag SET BagName=?, BagCategory=?, BagColor=?, BagPrice=?, BagStock=?, BagDescription=? WHERE BagID=?',
+    [productName, productCategory, productColor, productPrice, productStock, productDescription, id],
+    function (error, result) {
+      if (error) {
+        console.error('Error updating product details:', error.message);
+        return res.status(500).json({ error: 'Internal Server Error', message: error.message });
+      }
+
+      res.status(200).json({ message: 'Product details updated successfully' });
+    }
+  );
+});
+
+// Update images
+router.put('/api/image/:bagId', (req, res) => {
+  const { bagId } = req.params;
+  const { image1, image2, image3 } = req.body;
+
+  // Update images in the database
+  connection.query(
+    'UPDATE Images SET image_data1=?, image_data2=?, image_data3=? WHERE BagID=?',
+    [image1, image2, image3, bagId],
+    function (error, result) {
+      if (error) {
+        console.error('Error updating images:', error.message);
+        return res.status(500).json({ error: 'Internal Server Error', message: error.message });
+      }
+
+      res.status(200).json({ message: 'Image details updated successfully' });
+    }
+  );
+});
+
 
 const PORT = process.env.PORT;
 router.listen(PORT, () => {

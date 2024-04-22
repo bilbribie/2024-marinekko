@@ -6,7 +6,7 @@ import './style/ourteam.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 function OurTeam() {
-  const position = [80.457233, 95.128172]; // latitude and longitude of marinekko shop
+  const position = [80.457233, 95.128172]; 
 
   return (
     <div>
