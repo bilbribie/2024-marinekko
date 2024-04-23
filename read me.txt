@@ -1,6 +1,9 @@
-npm install -g create-react-app
-create-react-app marinekko
+Please make sure that you hava React in stall in your device
 
-cd C:\Users\Beebie\Documents\git\2024-marinekko\marinekko
-npm start
+To run the server:
+1. path to server by "cd /path/to/sec3_gr4_fe_server"
+2. run "npm start" in terminal
 
+To run React app:
+1. path to server by "cd /path/to/sec3_gr4_fe_src"
+2. run "npm run dev" in terminal
