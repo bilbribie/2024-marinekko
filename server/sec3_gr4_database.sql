@@ -142,7 +142,7 @@ INSERT INTO AdminAccount (`AdminID`, `AdminRole` ,`AdminUsername`, `AdminFirstNa
 
 (012220, 'Edit bag description','Admin_Bas', 'Bas', 'Flora', 'BasFlora@gmail.com', 'Floraa655');
 
-DROP TABLE IF EXISTS `LoginHistory`;
+/*DROP TABLE IF EXISTS `LoginHistory`;
 
 /*login hostory of admin*/
 CREATE TABLE LoginHistory (
@@ -195,9 +195,9 @@ there is a requirement for admin ID*/
 
 (012219, 'username and password' , '2024-12-01 10:18:33'),
 
-(012220, 'username and password' , '2024-06-10 07:45:22');
+(012220, 'username and password' , '2024-06-10 07:45:22');*/
 
-DROP TABLE IF EXISTS `ModifyAdmin`;
+/*DROP TABLE IF EXISTS `ModifyAdmin`;
 
 /* admin modification table*/
 CREATE TABLE ModifyAdmin (
@@ -256,7 +256,7 @@ INSERT INTO ModifyBag (`BagID`, `AdminID`, `ModifyType`, `ModifyDate`, `ModifyDe
 
 (018813, 012219, 'Remove', '2024-06-17', 'Removed the bag'),
 
-(028805, 012220, 'Edit bag description', '2024-06-26', 'Edited the bag description and color');
+(028805, 012220, 'Edit bag description', '2024-06-26', 'Edited the bag description and color');*/
 
 
 DROP TABLE IF EXISTS `Images`;
