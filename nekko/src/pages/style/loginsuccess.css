@@ -1,5 +1,7 @@
+/* loginsuccess.css */
+
 .submitButton {
-    background-color: pink; /* Example color, adjust as necessary */
+    background-color: pink; 
     width: 100%;
     height: 50px;
     border-radius: 40px;
@@ -10,6 +12,6 @@
   }
   
   .submitButton:hover {
-    background-color: rgb(165, 85, 98); /* Darker shade for hover state */
+    background-color: rgb(165, 85, 98); 
   }
   

@@ -1,134 +1,204 @@
+/* search.css */
 
-
-.page-container-search{
+.page-container-search {
     width: 100%;
-    height: fit-content;
     background-color: rgb(243, 243, 243);
+  }
+  
+  .page-container-search .header .bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  } 
 
-    .header{
-        /* background-color: aqua; */
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
-    }
+  .page-container-search .header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
 
-    .bar{
-        /* width: 800px; */
-        margin-left : 40px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        padding-left: 1%;
-        width: 70%;
-        /* background-color: aquamarine; */
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+  .page-container-search .bar {
+    margin-left: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 1%;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .page-container-search .searchBox {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff; 
+    border: 2px solid #ffffff; 
+    border-radius: 25px; 
+    padding: 0.5rem;
+    width: 300px; 
+  }
+  
+  .page-container-search .searchBox input[type="text"] {
+    flex-grow: 1;
+    border: none;
+    background-color: transparent;
+    padding-left: 1rem;
+    color: #050505;
+  }
+  
+  .page-container-search .searchBox input[type="text"]::placeholder {
+    color: #050505; 
+  }
 
-    input{
-        border: none;
-    }
+  .page-container-search .searchBox button {
+    background: none;
+    border: none;
+    padding-right: 1rem;
+    cursor: pointer;
+  }
+  .page-container-search .searchBox img {
+    width: 25px;
+    height: 25px;
+  }
+  
+  
+  .page-container-search .noBagsFound-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: larger;
+  }
+  
+  .page-container-search .bags-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .page-container-search .recommended-bag-container {
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  background-color: #fff; 
+  padding: 1rem;
+  border-radius: 4px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s ease; 
+  }
 
-    select{
-        border: solid rgb(188, 184, 184);
-        border-width: 0.1px;
-    }
+  .page-container-search .form-select {
+    background: url('./asstes/down.png') no-repeat right 0.5rem center / 16px 16px;
+    color: #050505;
+  }
 
-    
-    .searchBox{
-        padding-left: 20px;
-        padding-right: 20px;
-        display: flex;
-        align-items: center;
-        width : 300px;
-        height: 50px;
-        border: solid rgb(188, 184, 184);
-        border-width: 0.1px;
-        box-shadow: 10px;
-        background-color: white;
-        border-radius: 40px;
-    }
-    
-    
-    .searchbutton{
-        width: 40px;
-        height: 40px;
-    
-    }
+  .page-container-search .form-select:focus,
+  .page-container-search input[type="text"]:focus {
+    outline: none;
+    color: #050505;
+  }
 
-    .noBagsFound-container{
-        display: flex;
-        justify-content: center;
-        padding-top: 50px;
-        padding-bottom: 50px;
-        font-size: larger;
-    }
-    
-    .bags-container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr); /* 4 columns */
-        grid-gap: 20px; /* This adds space between the bags */
-        padding: 20px; /* Add some padding around the grid */
-        max-width: 1200px; /* Adjust this as needed */
-        margin: auto; /* Center the container on the page */
-      }
-      
-      .bag-container img {
-        max-width: 100%; /* Make sure the image doesn't exceed the container */
-        height: auto; /* Automatically adjust the height */
-        border-radius: 4px; /* Optional: for rounded corners */
-      }
+  .page-container-search .header .bar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    color: #050505;
+  }
+  
+  .page-container-search .recommended-bag-container:hover {
+    transform: scale(1.03);
+  }
+  
+  .page-container-search .recommended-bag-container img {
+    max-height: 100%; 
+    max-width: 100%;
+  }
 
-    .bag-container:hover{
-        transform: scale(1.1);
-        .bag-description-container{
-            background-color: black;
-            .name{
-                color: white;
-            }
-        }
-        
-    }
+  .page-container-search .form-select {
+    background-color: #ffffff; 
+    border: 2px solid #cccccc;
+    border-radius: 25px; 
+    padding: 0.5rem 1rem;
+    -webkit-appearance: none; 
+    -moz-appearance: none;    
+    appearance: none;        
+    cursor: pointer;
+    font-size: 1rem;
+  }
 
-    .bag-description-container{
+  
+  .page-container-search .recommended-bag-container:hover .bag-description-container {
+    background-color: black;
+  }
+  
+  .page-container-search .recommended-bag-container:hover .bag-description-container .name {
+    color: white;
+  }
+  
+  .page-container-search .img-container {
+    width: 100%; 
+  height: 200px;
+  object-fit: contain; 
+  background: #fff; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  }
+  
+  
+  .page-container-search .bag-description-container {
+    padding-top: 5%;
+    padding-left: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    transition: 0.2s;
+  }
+  
+  .page-container-search .bag-description-container .name {
+    font-size: larger;
+    font-weight: bold;
+    color: black;
+  }
+  
+  .page-container-search .bag-description-container .name:hover {
+    text-decoration: underline;
+  }
+  
+  .page-container-search .bag-description-container .category {
+    margin-top: 1%;
+    color: rgb(183, 189, 195);
+  }
+  
+  .page-container-search .bag-description-container .price {
+    margin-top: 5%;
+    color: rgb(184, 102, 116);
+  }
+  
+  .page-container-search select {
+    border: solid rgb(188, 184, 184);
+    border-width: 1px;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 20px;
+  }
+  
+  .page-container-search select:focus {
+    outline: none;
+    border-color: rgb(160, 160, 160);
+  }
+  
+  .page-container-search input:focus {
+    outline: none;
+  }
 
-        padding-top: 5%;
-        padding-left: 5%;
-        width: 100%;
-        height: 30%;
-        display: flex;
-        flex-flow: column;
-        align-items: flex-start;
-        background-color: rgb(234, 240, 238);
-        transition: 0.2s;
-
-        .name{
-            font-size: larger;
-            font-weight: bold;
-            color: black;
-            /* background-color: red; */
-        }
-
-        .name:hover{
-            text-decoration: underline;
-        }
-
-        .catagory{
-            margin-top: 1%;
-            color : rgb(183, 189, 195);
-            /* background-color: red; */
-        }
-        .price{
-            margin-top: 5%;
-            color : rgb(184, 102, 116);
-            /* background-color: red; */
-
-        }
-    }
-
-    
-
-}
-
-
-
+  

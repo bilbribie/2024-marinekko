@@ -58,7 +58,7 @@ function ProductManage() {
           }
           return response.json();
         })
-        
+
         .then(data => {
           console.log(`${data.message}\nBag name: ${bagToDelete.BagName}`);
           setBags(bags.filter(bag => bag.BagID !== bagId));
@@ -87,7 +87,7 @@ function ProductManage() {
             onChange={handleSearch}
             className="search-input"
           />
-          <button onClick={() => navigate('/addproduct')}>Add New Product</button>
+          <button className='addButton' onClick={() => navigate('/addproduct')}>Add New Product</button>
         </div>
         {/* Product table */}
         <div className="product-table">
@@ -110,7 +110,7 @@ function ProductManage() {
                 <tr key={bag.BagID}>
                   <td>{index + 1}</td>
                   <td>
-                    <img src={images[bag.BagID]} alt={bag.BagName} />
+                    <img src={images[bag.BagID]} alt={bag.BagName} style={{ width: '30px', height: 'auto' }}/>
                   </td>
                   <td>{bag.BagName}</td>
                   <td>{bag.BagCategory}</td>
@@ -118,10 +118,14 @@ function ProductManage() {
                   <td>{bag.BagStock}</td>
                   <td>{(Number(bag.BagPrice) || 0).toFixed(2)}</td>
                   <td>
-                    <button onClick={() => handleEditBag(bag.BagID)}>Edit</button>
+                    <button  className = "button" onClick={() => handleEditBag(bag.BagID)}>
+                      <img src='/assets/edit-text.png' alt="Edit" style={{ width: '24px', height: 'auto' }}/>
+                    </button>
                   </td>
                   <td>
-                    <button onClick={() => handleDeleteBag(bag.BagID)}>Delete</button>
+                    <button className = "button" onClick={() => handleDeleteBag(bag.BagID)}>
+                      <img src='/assets/cross.png' alt="Delete" style={{ width: '24px', height: 'auto' }}/>
+                    </button>
                   </td>
                 </tr>
               ))}

@@ -1,64 +1,93 @@
-/* Footer.css */
+/* footer.css */
+
+/* General reset for padding and margin */
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+body, html {
+  width: 100%;
+  /* Ensure no default margin or padding on the body */
+  margin: 0;
+  padding: 0;
+  /* Set the font family for the entire page */
   font-family: "Maven Pro", sans-serif;
 }
 
+/* Footer specific styles */
+.footer {
+  background-color: #f2f2f2; /* Light grey background */
+  color: #333; /* Dark grey text */
+}
 
-
-.toTopButton{
-  font-weight: 600;
+.footer-top {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-  background-color: rgb(206, 206, 206);
-  height: 30px;
+  padding: 10px 20px; /* Consistent padding around the Top of Page button */
+  background-color: #e6e6e6; /* Slightly darker grey background */
 }
 
+.toTopButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
 
-
-.footerNav{
-  width: 100%;
-  height: 200px;
-  background-color: rgb(230, 230, 230);
+.footer-body {
   display: flex;
   justify-content: space-between;
-
-  
-
-  .container{
-    margin: 10px;
-    width: 30%;
-
-    .noDecoration{
-      color: black;
-      text-decoration: none;
-    }
-
-    .link{
-      padding-top: 10px;
-    }
-  }
-
-  .verticalSeperator{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    width: 10px;
-  }
-
-
-
+  padding: 20px 40px; /* Increase horizontal padding to match design */
+  align-items: center; /* Vertically center the items */
 }
 
-.bottom{ 
-  color : white;
-  display: flex;
-  justify-content: center;
-  background-color: pink;
+.footer-column {
+  display: flex; /* Use flexbox to align links */
+  flex-direction: column; /* Stack links vertically */
 }
 
+.footer-column h6 {
+  font-weight: bold;
+  margin-bottom: 10px; /* Space between the title and the links */
+}
 
+.footer-column a {
+  color: #333;
+  text-decoration: none;
+  margin-bottom: 5px; /* Space between the links */
+  transition: color 0.3s ease;
+}
 
+.footer-column a:hover {
+  color: #1a1a1a; /* Darker grey on hover */
+}
 
+.footer-bottom {
+  text-align: center;
+  background-color: #ffafcc; /* Pink background */
+  color: #333;
+  padding: 10px;
+}
+
+/* Remove any default list styling */
+ul {
+  list-style-type: none;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .footer-top, .footer-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-column:not(:last-child) {
+    margin-bottom: 20px; /* Add some space between columns when stacked */
+  }
+
+  .footer-body {
+    padding: 20px; /* Adjust padding for smaller screens */
+  }
+}

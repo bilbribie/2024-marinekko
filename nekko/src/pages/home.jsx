@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Nav1 from './components/nav1';
+import Nav2 from './components/nav2';
 import Header from './components/header';
 import Footer from './components/footer';
 import Recommend from './components/recommend';
@@ -47,7 +47,7 @@ function Home() {
   return (
     <div>
       <Header />
-      <Nav1 />
+      <Nav2 />
       <div className="page-container-home">
         <section className="newCollectionBackground">
           <div className="center">
@@ -90,8 +90,8 @@ function Home() {
           For you
         </section>
         <Recommend bagsArray={recommendedArray} />
+        <Footer />
       </div>
-      <Footer />
     </div>
   )
 }

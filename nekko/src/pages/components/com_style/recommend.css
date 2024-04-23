@@ -1,79 +1,88 @@
+/* recommend.css */
 
-.component-container{
-
-    background-color: rgb(243, 243, 243);
-
-    .recommended-container{
-
-        /* background-color: green; */
-        width: auto;
-        height: 430px;
-        height: calc(0.4 * (100vw - 80px));
-        /* margin-top: 20px; */
-        margin-left: 40px;
-        margin-right: 40px;
-        padding-top: calc(0.025 * (100vw - 80px));
-        padding-bottom: calc(0.025 * (100vw - 80px));
-        /* margin-bottom: 30px; */
-        display: flex;
-        justify-content: space-evenly;
-    
-    }
-
-    .recommended-bag-container{
-        text-decoration: none;
-        width: 24%;
-        height: 100%;
-        transition: 0.2s;
-        /* background-color: rgb(232, 14, 14); */
-    
-        .img-container{
-            width: 100%;
-            height: 70%;
-            /* background-color: aqua; */
-        }
-
-        
-    
-        .description-container{
-            padding-left: 10px;
-            width: 100%;
-            height: 30%;
-            display: flex;
-            flex-flow: column;
-            align-items: flex-start;
-            justify-content: center;
-            background-color: rgb(234, 240, 238);
-
-            .name{
-                /* background-color: aquamarine; */
-                color : black;
-                font-size: 25px;
-            }
-            .catagory{
-                /* background-color: yellow; */
-                color : rgb(142, 140, 140);
-            }
-            .price{
-                /* background-color: blueviolet; */
-                color : rgb(198, 133, 144);
-            }
-        }
-
-        
-    }
-
-    .recommended-bag-container:hover{
-        transform: scale(1.1);
-
-        .description-container{
-            background-color: black;
-            .name{
-                color: white;
-            }
-        }
-    }
-
+.component-container {
+    background-color: #f5f5f5;
+    padding: 40px 0;
 }
 
+.recommended-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    padding: 0 40px;
+}
 
+.recommended-bag-container {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.recommended-bag-container:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.recommended-bag-container .img-container {
+    width: 100%;
+    height: 200px;
+    background-color: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recommended-bag-container .img-container img {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.recommended-bag-container .description-container {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.recommended-bag-container .description-container .name {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+}
+
+.recommended-bag-container .description-container .category {
+    font-size: 0.9em;
+    color: #777;
+    margin: 5px 0;
+}
+
+.recommended-bag-container .description-container .price {
+    font-size: 1em;
+    color: #444;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .recommended-container {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .recommended-container {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+
+    .recommended-bag-container {
+        width: 100%;
+    }
+}

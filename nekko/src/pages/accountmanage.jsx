@@ -72,22 +72,38 @@ function AccountManage() {
           onChange={handleSearch}
         />
         <button onClick={() => navigate('/addadmin')}>Add New Admin</button>
-        <div className="admin-list">
-          {filteredAdmins.map((admin) => (
-            <div key={admin.AdminID} className="admin-row">
-              <div>{admin.AdminUsername}</div>
-              <div>{admin.AdminFirstName}</div>
-              <div>{admin.AdminSurname}</div>
-              <div>{admin.AdminEmail}</div>
-              <button onClick={() => handleEditAdmin(admin.AdminID)}>
-                <img src='/assets/edit-text.png' alt="Edit" />
-              </button>
-              <button onClick={() => handleDeleteAdmin(admin.AdminID)}>
-                <img src='/assets/cross.png' alt="Delete" />
-              </button>
-            </div>
-          ))}
-        </div>
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>First Name</th>
+              <th>Surname</th>
+              <th>Email</th>
+              <th>Actions</th>
+              <th> </th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredAdmins.map((admin) => (
+              <tr key={admin.AdminID}>
+                <td>{admin.AdminUsername}</td>
+                <td>{admin.AdminFirstName}</td>
+                <td>{admin.AdminSurname}</td>
+                <td>{admin.AdminEmail}</td>
+                <td>
+                  <button  onClick={() => handleEditAdmin(admin.AdminID)}>
+                  <img src='/assets/edit-text.png' alt="Edit" style={{ width: '24px', height: 'auto' }} />
+                  </button>
+                </td>
+                <td>
+                <button onClick={() => handleDeleteAdmin(admin.AdminID)}>
+                    <img src='/assets/cross.png' alt="Delete" style={{ width: '24px', height: 'auto' }} />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
       <Footer />
     </div>

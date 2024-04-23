@@ -1,7 +1,6 @@
+// addproduct.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-// Assuming you have components Header, Nav2, and Footer
 import Header from './components/header';
 import Nav2 from './components/nav2';
 import Footer from './components/footer';
@@ -65,7 +64,7 @@ function AddProduct() {
           console.error('Network response was not ok');
           console.error('Response status:', response.status);
           console.error('Response text:', response.statusText);
-          return; // Exit the function early
+          return;
         }
         return response.json();
       })
@@ -74,7 +73,7 @@ function AddProduct() {
       });
     })
     .then(() => {
-      // If success
+      // Print to check if add bag successfully 
       console.log('New bag added successfully');
       navigate('/productmanage');
     })

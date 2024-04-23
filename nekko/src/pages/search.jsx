@@ -1,12 +1,14 @@
+// search.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Nav2 from './components/nav2';
 import Header from './components/header';
 import Footer from './components/footer';
-import PageNavBlock from './components/pagenavblock';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import './style/search.css';
 
 function Search() {
+  const location = useLocation().state;
   const [bags, setBags] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [categoriesArray, setCategoriesArray] = useState([
@@ -21,22 +23,32 @@ function Search() {
     "35000-40000", "40000-45000", "45000-50000"
   ]);
   const [filters, setFilters] = useState({
-    category: '',
+    category:  '',
     color: '',
     priceRange: '',
     name: ''
   });
   const [numberOfPages, setNumberOfPages] = useState(0);
 
+  useEffect(() => { 
+    if (location) {
+      setFilters(prevFilters => ({
+        ...prevFilters,
+        category: location
+      }));
+    }
+  }, [location]);
+
   useEffect(() => {
     const fetchBags = async (pageNumber) => {
-      let query = '/api/bag'; // Default endpoint to fetch all bags
+      // console.log(" state " + useLocation().state);
+      let query = '/api/bag'; 
 
       if (filters.name || filters.category || filters.color || filters.priceRange) {
         query = '/search_api_query';
       }
 
-      const bagsPerPage = 12; // Change this value to adjust the number of bags per page
+      const bagsPerPage = 12; 
       const offset = (pageNumber - 1) * bagsPerPage;
 
       const params = new URLSearchParams(filters);
@@ -52,7 +64,7 @@ function Search() {
         console.error('Error fetching bags:', error);
       }
     };
-
+    console.log('fetching');
     fetchBags(currentPage);
   }, [filters, currentPage]);
 
@@ -120,7 +132,7 @@ function Search() {
               </button>
             </div>
             <div>
-              <select name="category" className="form-select" onChange={handleFilterChange}>
+            <select name="category" className="form-select" value = {useLocation().state || filters.category} onChange={handleFilterChange}>
                 <option value="">Category</option>
                 {categoriesArray.map(category => (
                   <option key={category} value={category}>{category}</option>
@@ -155,13 +167,37 @@ function Search() {
             renderBags()
           )}
         </div>
-        <div className="page-selector-container">
+        {/* <div className="page-selector-container">
           <PageNavBlock currentPage={currentPage} numberOfPage={numberOfPages} setCurrentPage={setCurrentPage} />
-        </div>
+        </div> */}
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 }
 
 export default Search;
+
+
+//
+//                       _oo0oo_
+//                      o8888888o
+//                      88" . "88
+//                      (| -_- |)
+//                      0\  =  /0
+//                    ___/`---'\___
+//                  .' \\|     |// '.
+//                 / \\|||  :  |||// \
+//                / _||||| -:- |||||- \
+//               |   | \\\  -  /// |   |
+//               | \_|  ''\---/''  |_/ |
+//               \  .-\__  '-'  ___/-. /
+//             ___'. .'  /--.--\  `. .'___
+//          ."" '<  `.___\_<|>_/___.' >' "".
+//         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+//         \  \ `_.   \_ __\ /__ _/   .-` /  /
+//     =====`-.____`.___ \_____/___.-`___.-'=====
+//                       `=---='
+//
+//
+//     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

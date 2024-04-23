@@ -1,8 +1,10 @@
+// login.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Nav1 from './components/nav1';
+import Nav2 from './components/nav2';
 import Footer from './components/footer';
 import Header from './components/header';
+import './style/login.css';
 
 function Login() {
   const navigate = useNavigate();
@@ -30,7 +32,7 @@ function Login() {
       if (data.message === 'Login successful') {
         console.log('Login successful', data.user);
         localStorage.setItem('isLoggedIn', 'true'); // Store login state
-        navigate('/login-success'); // Change to desired routeๅ
+        navigate('/login-success'); // d
       } else {
         console.error('Login failed');
         setError('Login Failed: ' + data.message);  // Set error message
@@ -45,11 +47,8 @@ function Login() {
   return (
     <div>
       <Header />
-      <Nav1 />
-      <div className="header_">
-        <img className="userLogo" src="/assets/user1.png" alt="user" /> {/* Corrected the path */}
-        <label>Administrator Log In</label>
-      </div>
+      <Nav2 />
+      
       <div className="page-container-login">
         <div className="login-container">
           <div className="header">Administrator Log In</div>

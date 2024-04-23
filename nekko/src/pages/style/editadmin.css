@@ -1,35 +1,37 @@
-/* Assuming editadmin.css is your stylesheet */
+/* editadmin.css */
 
 .edit-admin-form {
-  background-color: #fff; /* Change to a light background */
+  background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  max-width: 600px; /* Adjust width as needed */
-  margin: 50px auto; /* Center the form on the page */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add some shadow for depth */
+  max-width: 600px;
+  margin: 50px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .edit-admin-form label {
   display: block;
   margin-bottom: 1rem;
-  color: #333;
+  color: #303030;
 }
 
 .edit-admin-form input[type="text"],
 .edit-admin-form input[type="email"],
 .edit-admin-form input[type="password"] {
-  width: 100%; /* Full width */
+  width: 100%;
   padding: 10px;
   margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+  color: #191919;
+  background-color: #ccc;
 }
 
 .edit-admin-form button {
-  display: block; /* Make the button block-level to fill container */
+  display: block;
   width: 100%;
   padding: 10px;
-  background-color: #e91e63; /* Match the pink theme */
+  background-color: #efa5c7;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -38,7 +40,5 @@
 }
 
 .edit-admin-form button:hover {
-  background-color: #c2185b; /* Slightly darker on hover */
+  background-color: #FFC0CB;
 }
-
-/* You might need to adjust other styles, but this should give you a starting point. */

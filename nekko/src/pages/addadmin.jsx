@@ -36,12 +36,12 @@ function AddAdmin() {
         console.error('Network response was not ok');
         console.error('Response status:', response.status);
         console.error('Response text:', response.statusText);
-        return; // Exit the function early
+        return; 
       }
       return response.json();
     })
     .then(() => {
-      // If success
+      // If add admin successfully
       console.log('New admin added successfully');
       navigate('/accountmanage');
     })

@@ -9,7 +9,7 @@ function Nav2() {
 
       <Link class="NoDecorate" to="/">HOME</Link> 
       <div class="seperator">|</div>
-      <Link class="NoDecorate" to="/search">BAG</Link> 
+      <Link class="NoDecorate" state = {""} to="/search">BAG</Link> 
       {/* <Link class="NoDecorate" to={"/bag/" + JSON.stringify(nameObj)} >BAG</Link>  */}
       <div class="seperator">|</div>
       <Link class="NoDecorate" to="/ourteam">OUR TEAM</Link> 

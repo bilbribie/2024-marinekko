@@ -203,7 +203,7 @@ function EditProduct() {
           <label>
           Stock:
           <input
-            type="number" // Use type="number" if stock should be a number
+            type="number" 
             value={product.productStock}
             onChange={(e) => setProduct({ ...product, productStock: e.target.value })}
           />

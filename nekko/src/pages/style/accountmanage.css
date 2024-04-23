@@ -1,60 +1,114 @@
 /* accountmanage.css */
-.page-container {
-    width: 95%;
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 1rem;
-    background: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Header styling */
-  .admin-header {
-    background-color: #f3e9ee;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #333;
-    font-size: 1.5rem;
-  }
-  
-  /* Admin list and table styling */
-  .admin-list {
-    width: 100%;
-    border-collapse: collapse;
-  }
 
-  .admin-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #ccc; /* Optional: adds a line between rows */
+.admin-manage-container {
+  flex-grow: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff; 
 }
 
-.admin-row > div,
-.admin-row > button {
-    margin-right: 10px;
+.admin-manage-container input[type="text"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #333;
+  background-color: #fff;
 }
 
-.admin-row > div {
-    flex-grow: 1;
+.admin-manage-container button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  margin-bottom: 1rem;
+  background-color: #FFC0CB;
+  border: none;
+  border-radius: 4px;
+  color: #333;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
 }
-.admin-row img {
-  width: 24px; /* Adjust size as needed */
-  height: auto;
+
+.admin-manage-container button:hover {
+  background-color: #E8A8B8;
 }
-  
-  /* Footer styling */
-  .footer {
-    background-color: #f3e9ee;
-    padding: 1rem;
-    text-align: center;
-    margin-top: 2rem;
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-table .button img {
+  max-width: 20%; 
+
+}
+
+.admin-table thead {
+  background-color: #f2f2f2;
+}
+
+.admin-table th, .admin-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.admin-table th:first-child,
+.admin-table td:first-child {
+  padding-left: 1.5rem;
+}
+
+.admin-table th:last-child,
+.admin-table td:last-child {
+  padding-right: 1.5rem;
+}
+
+.admin-table tr:hover {
+  background-color: #f9f9f9;
+}
+/* 
+.admin-table .button {
+  padding: 0.25rem 0.75rem;
+  margin: 0 0.25rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: bold;
+
+} */
+
+
+@media (max-width: 768px) {
+  .admin-table, .admin-table thead, .admin-table tbody, .admin-table th, .admin-table td, .admin-table tr {
+    display: block;
   }
-  
-  .footer a {
-    color: #333;
-    text-decoration: none;
+
+  .admin-table th, .admin-table td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
   }
-  
+
+  .admin-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 1.5rem;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .admin-table th::after,
+  .admin-table td::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}

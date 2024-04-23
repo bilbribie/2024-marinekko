@@ -1,6 +1,7 @@
+// bag.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Nav1 from './components/nav1';
+import Nav2 from './components/nav2';
 import Header from './components/header';
 import Footer from './components/footer';
 import Recommend from './components/recommend';
@@ -20,7 +21,7 @@ function Bag(props) {
         fetch(`http://localhost:3001/api/image/${id}`)
           .then((res) => res.json())
           .then((images) => {
-            // Assuming the images array is correct and each image has properties image_data1, image_data2, etc.
+            // in json after fetch api has  3 links images, so we need to map the image to show 
             const imageUrls = images.map(img => img.image_data1 || img.image_data2 || img.image_data3);
             // Set the bag details and images in the state
             setBagDetails({ ...details, images: imageUrls.filter(url => url) });
@@ -67,7 +68,7 @@ function Bag(props) {
   return (
     <div>
       <Header />
-      <Nav1 />
+      <Nav2 />
       <div className="page-container-bag">
         <section className="product-container">
           <div className="picture-container">

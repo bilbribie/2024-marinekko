@@ -6,8 +6,6 @@
     display: flex;
     justify-content: center;
     height: 250px;
-    /* height: calc(0.4* 100vw);
-     */
 
     .left{
         width : 15%;

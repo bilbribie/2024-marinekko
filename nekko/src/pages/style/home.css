@@ -1,36 +1,170 @@
-
-* {
-    font-style: Optima, sans-serif;
+/* home.css */
+/* global.css */
+html, body, #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background-color: #f3f3f3;
+    font-family: 'Arial', sans-serif;
+    color: #333;
 }
 
-.page-container-home{
-    background-color: rgb(243, 243, 243);
-    padding-top: 50px;
+.page-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
 
-    .newCollectionBackground{
+*, *::before, *::after {
+    box-sizing: border-box;
+}
 
-        
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"],
+select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #FFC0CB;
+    border: none;
+    border-radius: 20px;
+    color: #333;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #E8A8B8;
+}
+
+.admin-form, .product-form, .edit-admin-form {
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+}
+
+.header {
+    background-color: #FBEAF1;
+    padding: 1rem 2rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* .img-container {
+    width: 100%;
+    height: 200px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.img-container img {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+@media (max-width: 768px) {
+    .product-container,
+    .admin-form,
+    .product-form,
+    .edit-admin-form {
+        width: 90%;
+    }
+} */
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background-color: #fff;
+    font-family: "Maven Pro", sans-serif;
+}
+
+.page-container {
+    width: calc(100% - 2rem);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.header, .main-content, .footer {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.header {
+    padding: 1rem 0;
+}
+
+.footer {
+    padding: 1rem 0;
+}
+
+.main-content {
+    flex: 1;
+    width: 100%;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #dedede;
+}
+
+.main-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.main-content > * {
+    width: 100%;
+}
+
+.page-container-home {
+    .newCollectionBackground {
         width: 100%;
         height: calc(0.5 * 100vw);
         background-size: cover;
         background-image: url("/assets/top.jpg");
-        
         display: flex;
         justify-content: flex-end;
-
-        .center{
-            
+        .center {
             font-size: 30px;
             padding-top: 20px;
             display: flex;
             flex-flow: column;
             align-items: center;
             width: 300px;
-
         }
-
-
-        .link-container{
+        .link-container {
             font-size: 20px;
             width: 160px;
             height: 40px;
@@ -39,17 +173,13 @@
             align-items: center;
             justify-content: center;
             background-color: white;
-
-            .NoDecorate{
+            .NoDecorate {
                 text-decoration: none;
                 color: black;
             }
-            
         }
-
     }
-
-    .horizontal-seperator{
+    .horizontal-seperator {
         background-color: pink;
         width: auto;
         height: 3px;
@@ -58,101 +188,88 @@
         margin-left: 40px;
         margin-right: 40px;
     }
-
-    .container1{
+    .container1 {
         display: flex;
         justify-content: space-between;
         margin-left: 40px;
         align-items: center;
-
-        .container1_1{
+        .container1_1 {
             display: flex;
             margin-right: 40px;
         }
-        
     }
-
-    .Title{
+    .Title {
         font-size: 40px;
         color: pink;
     }
-
-    .seeButton{
+    .seeButton {
         font-size: 20px;
         color: pink;
     }
-
-    .nextSymbol{
+    .nextSymbol {
         margin-left: 10px;
         width: 30px;
         height: 30x;
     }
-
-    .catagories-container{
-        margin-left: 40px;
-        margin-right: 40px;
-        width: auto;
-        height: fit-content;
-        /* background-color: aquamarine; */
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-
-    /* might apply media query */
-        .catagory-container{
-            margin-left: 5px;
-            margin-right: 5px;
-            margin-top: 20px;
-            width: 32%;
-            height: calc(0.196 * (100vw - 90px));
-            /* background-color: blue; */
-            /* border-radius: 20px;  */
-            /* background-color: aqua; */
-            /*uncomment to see actual container  */
-            display: flex;
-            justify-content: flex-end;
-            flex-direction: column;
-        }
-
-        .catagory-picture-container{
-            width: 100%;
-            height: 80%;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-
-            display: flex;
-        }
-
-        .catagory-name-container{
-            width: 100%;
-            height: 25%;
-            display: flex;
-            align-items: center;
-            padding-left: 20px;
-            background-color: pink;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-        }
-
+    .catagories-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columns will adjust to the container's width */
+        gap: 1rem; /* Space between cards */
+        padding: 1rem; /* Padding around the grid container */
+        margin: 0; /* Remove default margins */
     }
-
-    .recommended-header-container{
+    
+    .catagory-container {
+        display: flex; /* This will ensure the card stretches in a column fashion */
+        flex-direction: column;
+        align-items: center; /* Align items in the center for a neat layout */
+        background: #fff; /* Background of the card */
+        border-radius: 15px; /* Rounded corners for the card */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        overflow: hidden; /* Ensures the contents do not spill out of the card */
+        margin-bottom: 2rem; /* Space below each card */
+    }
+    
+    .catagory-picture-container {
+        width: 100%; /* Full width */
+        padding-top: 56.25%; /* Aspect ratio of 16:9 */
+        position: relative; /* Position relative for absolute child positioning */
+        border-top-left-radius: 15px; /* Rounded corners top left */
+        border-top-right-radius: 15px; /* Rounded corners top right */
+    }
+    
+    .catagory-picture-container img {
+        position: absolute; /* Absolute position */
+        top: 0;
+        left: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        object-fit: cover; /* Cover the area without stretching the image */
+    }
+    
+    .catagory-name-container {
+        width: 100%; /* Full width */
+        padding: 0.5rem 1rem; /* Padding for the text */
+        background-color: #FBEAF1; /* Light pink background */
+        text-align: center; /* Center the text */
+        font-size: 1rem; /* Font size for category name */
+        font-weight: bold; /* Bold font weight */
+        color: #333; /* Text color */
+        border-bottom-left-radius: 15px; /* Rounded corners bottom left */
+        border-bottom-right-radius: 15px; /* Rounded corners bottom right */
+    }
+    .recommended-header-container {
         font-size: 40px;
         color: pink;
         display: flex;
         justify-content: flex-start;
         margin-left: 40px;
     }
-
-    .recommended{
+    .recommended {
         font-size: 30px;
         color: purple;
         display: flex;
         justify-content: flex-start;
         margin-left: 40px;
     }
-
 }
-
-
-

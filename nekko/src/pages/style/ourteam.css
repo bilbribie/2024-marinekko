@@ -1,58 +1,60 @@
+/* ourteam.css */
 
-.h1{
-    background-color: white; 
-    color: rgb(255, 255, 128);
-}
-.page-container-ourteam{
-    
-    background-color: rgb(243, 243, 243);
-    
-    .header{
+  .page-container-ourteam {
+    background-color: #fff; 
+    min-height: 50vh; 
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .page-container-ourteam h1 {
+    color: #333; 
+    background-color: transparent;
+    padding: 2rem; 
+    text-align: center; 
+  }
 
-        background-color: rgb(220, 220, 220);
-        display: flex;
-        justify-content: space-around;
-        column-gap: 20px;
-        align-items: center;
-        height: 80px;
-        padding: 20px;
+  .page-container-ourteam .leaflet-container {
+    height: 400px;
+    margin-bottom: 2rem; 
+  }
 
-        .logo{
-            width: 40px;
-            height: 40px;
-        }
+  .members-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; 
+    padding: 0 2rem; 
+  }
 
-    }
-    .members-container{
-        /* padding: 30px; */
-        display: flex;
-        justify-content: space-around;
-        /* background-color: aquamarine; */
+  .member-container {
+    width: 300px; 
+    margin-bottom: 2rem; 
+    text-align: center; 
+  }
 
-        .member-container{
-            width: 25vw;
-            height: fit-content;
-            /* background-color: red; */
-            display: flex;
-            flex-flow: column;
-            row-gap: 20px;
-        }
+  .member-name {
+    font-size: 1.25rem;
+    color: #333; 
+    margin: 1rem 0; 
+  }
 
-        .member-name{
-            font-size: x-large;
-            /* background-color: rgb(220, 28, 130); */
-            display: flex;
-            justify-content: center;
-        }
+  .member-picture {
+    width: 100%; 
+    height: auto; 
+    border-radius: 50%;
+    margin-bottom: 1rem; 
+  }
+ 
+  .member-container article {
+    color: #666; 
+    font-size: 0.9rem; 
+    line-height: 1.5;
+    padding: 0 1rem; 
+  }
 
-        .member-picture{
+  .MapContainer {
+    height: 400px; 
+    width: '100%'; 
+  }
 
-            width: 25vw;
-            height: 25vw;
-            border-radius: 13vw;
-        }
-
-
-    }
-
-}
+  

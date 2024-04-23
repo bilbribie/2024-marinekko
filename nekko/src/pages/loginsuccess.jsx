@@ -1,6 +1,7 @@
+// loginsuccess.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Nav1 from './components/nav1';
+import Nav2 from './components/nav2';
 import Footer from './components/footer';
 import Header from './components/header';
 
@@ -15,7 +16,7 @@ function LoginSuccess() {
   return (
     <div>
       <Header />
-      <Nav1 />
+      <Nav2 />
       <div className="page-container-login"> {/* Use the same container for style consistency */}
         <div className="login-container"> {/* Reuse login-container for similar styling */}
           <div className="header">Login Successful</div>
