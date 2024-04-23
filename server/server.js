@@ -54,7 +54,11 @@ router.get('/api/bag', (req, res) => {
 // method: get
 // URL: http://localhost:3001/api/bag
 //
-// BagId: 18801
+// Test 1
+// URL: http://localhost:3001/api/bag/18801
+// 
+// Test 1
+// URL: http://localhost:3001/api/bag/18802
 router.get('/api/bag/:id', (req, res) => {
   const bagId = req.params.id;
 
@@ -132,9 +136,9 @@ router.get('/search_api_query', (req, res) => {
   });
 });
 
-// Testing to query bag in Database
-// method: get
-// URL: http://localhost:3001/search_api_query
+// Testing to check login in Database
+// method: post
+// URL: http://localhost:3001/api/login
 //
 // Test 1
 // {
@@ -144,9 +148,9 @@ router.get('/search_api_query', (req, res) => {
 
 // Test 2
 // {
-//   "username": "Admin_John",
-//   "password": "AdminJohnd22"
-// }
+//   "username": "Admin_Coffee",
+//   "password": "Preaww2366"
+//   }
 router.post('/api/login', (req, res) => {
   const { username, password } = req.body;
   connection.query(
@@ -167,7 +171,10 @@ router.post('/api/login', (req, res) => {
 });
 
 
-// to receive all admin account from Marinekko datatbase
+// Testing to receive all adminaccount in Database
+// method: get
+// URL: http://localhost:3001/api/adminaccount
+//
 router.get('/api/adminaccount', (req, res) => {
   connection.query('SELECT * FROM AdminAccount', (error, results) => {
     if (error) throw error;
@@ -175,7 +182,27 @@ router.get('/api/adminaccount', (req, res) => {
   });
 });
 
-// POST request to add a new admin
+// Testing to query bag in Database
+// method: get
+// URL: http://localhost:3001/api/adminaccount
+//
+// Test 1
+// {
+//   "username": "newadmin",
+//   "firstName": "John",
+//   "lastName": "Doe",
+//   "email": "john.doe@example.com",
+//   "password": "newadminpassword"
+// }
+
+// Test 2
+// {
+//   "username": "newadmin2",
+//   "firstName": "John2",
+//   "lastName": "Doe2",
+//   "email": "john.doy@example.com",
+//   "password": "newadminpassword111"
+// }
 router.post('/api/adminaccount', (req, res) => {
   const { username, firstName, lastName, email, password } = req.body;
 
@@ -193,7 +220,15 @@ router.post('/api/adminaccount', (req, res) => {
   });
 });
 
-// Get data of specific admin
+// Testing to get specific admin by id
+// method: get
+// URL: http://localhost:3001/search_api_query
+//
+// Test 1
+// URL: http://localhost:3001/search_api_query/012201
+
+// Test 2
+// URL: http://localhost:3001/api/adminaccount/012205
 router.get('/api/adminaccount/:adminId', (req, res) => {
   let adminId = req.params.adminId;
 
@@ -216,7 +251,29 @@ router.get('/api/adminaccount/:adminId', (req, res) => {
   });
 });
 
-// PUT request to edit an existing admin
+// Testing to get specific admin by id
+// method: PUT
+// URL: http://localhost:3001/api/adminaccount/
+//
+// Test 1
+// URL: http://localhost:3001/api/adminaccount/012201
+// {
+//   "username": "Admin_Johny",
+//   "firstName": "Updated First Name",
+//   "lastName": "Updated Last Name",
+//   "email": "updatedemail@example.com",
+//   "password": "updatedpassword"
+// }
+// 
+// Test 2
+// URL: http://localhost:3001/api/adminaccount/012202
+// {
+//   "username": "Upgrade_Admin_Johny",
+//   "firstName": "Updated First Name",
+//   "lastName": "Updated Last Name",
+//   "email": "updatedemail@example.com",
+//   "password": "updatedpassword"
+// }
 router.put('/api/adminaccount/:adminId', (req, res) => {
   const { adminId } = req.params;
   const { username, firstName, lastName, email, password } = req.body;
@@ -235,13 +292,20 @@ router.put('/api/adminaccount/:adminId', (req, res) => {
   });
 });
 
-// DELETE request to remove an existing admin
+// Testing to delete specific admin by id
+// method: delete
+// URL: http://localhost:3001/adminaccount
+//
+// Test 1
+// URL: http://localhost:3001/api/adminaccount/012201
+//
+// Test 2
+// URL: http://localhost:3001/api/adminaccount/012205
 router.delete('/api/adminaccount/:adminId', (req, res) => {
   const { adminId } = req.params;
 
   console.log(`Attempting to delete admin with ID: ${adminId}`); 
 
-  // First, delete associated records in the LoginHistory table
   const deleteLoginHistoryQuery = 'DELETE FROM LoginHistory WHERE AdminID = ?';
   connection.query(deleteLoginHistoryQuery, [adminId], (error, results) => {
     if (error) {
@@ -265,42 +329,15 @@ router.delete('/api/adminaccount/:adminId', (req, res) => {
   });
 });
 
-
-
-
-// to receive all login history account from Marinekko datatbase
-router.get('/api/loginhistory', (req, res) => {
-  connection.query('SELECT * FROM LoginHistory', (error, results) => {
-    if (error) throw error;
-    res.json(results);
-  });
-});
-
-// to receive all modifyadmins from Marinekko datatbase
-router.get('/api/modifyadmin', (req, res) => {
-  connection.query('SELECT * FROM ModifyAdmin', (error, results) => {
-    if (error) throw error;
-    res.json(results);
-  });
-});
-
-// to receive all modifybags from Marinekko datatbase
-router.get('/api/modifybag', (req, res) => {
-  connection.query('SELECT * FROM ModifyBag', (error, results) => {
-    if (error) throw error;
-    res.json(results);
-  });
-});
-
-// to receive all images from Marinekko datatbase
-router.get('/api/image', (req, res) => {
-  connection.query('SELECT * FROM Images', (error, results) => {
-    if (error) throw error;
-    res.json(results);
-  });
-});
-
-// to receive specific image of bag from Marinekko datatbase
+// Testing to get specific image by bagid
+// method: get
+// URL: http://localhost:3001/api/image/
+//
+// Test 1
+// URL: http://localhost:3001/api/image/18801
+//
+// Test 2
+// URL: http://localhost:3001/api/image/038809
 router.get('/api/image/:id', (req, res) => {
   let bagId = req.params.id;
 
@@ -314,11 +351,32 @@ router.get('/api/image/:id', (req, res) => {
   })
 });
 
-// POST request to add a new bag
+// Testing to add new bag
+// method: post
+// URL: http://localhost:3001/api/bag
+//
+// Test 1
+// {
+//   "productName": "New Bag Name",
+//   "productCategory": "Handbag",
+//   "productColor": "White",
+//   "productPrice": 100.00,
+//   "productStock": 10,
+//   "productDescription": "Description of the new bag"
+// }
+// 
+// Test 2
+// {
+  //   "productName": "New Bag Name",
+  //   "productCategory": "Tote Bag",
+  //   "productColor": "Pink",
+  //   "productPrice": 100.00,
+  //   "productStock": 10,
+  //   "productDescription": "Description of the new bag"
+  // }
 router.post('/api/bag', (req, res) => {
   const { productName, productCategory, productColor, productPrice, productStock, productDescription } = req.body;
 
-  // Insert new bag
   connection.query(
     'INSERT INTO Bag (BagName, BagCategory, BagColor, BagPrice, BagStock, BagDescription) VALUES (?, ?, ?, ?, ?, ?)',
     [productName, productCategory, productColor, productPrice, productStock, productDescription],
@@ -335,7 +393,29 @@ router.post('/api/bag', (req, res) => {
   );
 });
 
-// POST request to add new images
+// Testing to add image to bag
+// method: PUT
+// URL: http://localhost:3001/api/image
+//
+// Test 1
+// URL: http://localhost:3001/api/image
+// {
+//   "bagId": 38829,
+//   "bagname": "New Bag Name",
+//   "image1": "https://www.chanel.com/images//t_one///q_auto:good,f_auto,fl_lossy,dpr_1.1/w_620/classic-11-12-handbag-blue-washed-denim-gold-tone-metal-washed-denim-gold-tone-metal-packshot-artistique-vue2-a01112b16747nx158-9539462692894.jpg",
+//   "image2": "https://www.chanel.com/images//t_one///q_auto:good,f_auto,fl_lossy,dpr_1.1/w_620/classic-11-12-handbag-blue-washed-denim-gold-tone-metal-washed-denim-gold-tone-metal-packshot-artistique-vue2-a01112b16747nx158-9539462692894.jpg",
+//   "image3": "https://www.chanel.com/images//t_one///q_auto:good,f_auto,fl_lossy,dpr_1.1/w_620/classic-11-12-handbag-blue-washed-denim-gold-tone-metal-washed-denim-gold-tone-metal-packshot-artistique-vue2-a01112b16747nx158-9539462692894.jpg"
+// }
+// 
+// Test 2
+// URL: http://localhost:3001/search_api_query/012202
+// {
+//   "bagId": 38830,
+//   "bagname": "New Bag Name",
+//   "image1": "https://www.chanel.com/images//t_one///q_auto:good,f_auto,fl_lossy,dpr_1.1/w_620/classic-11-12-handbag-blue-washed-denim-gold-tone-metal-washed-denim-gold-tone-metal-packshot-artistique-vue2-a01112b16747nx158-9539462692894.jpg",
+//   "image2": "https://www.chanel.com/images//t_one///q_auto:good,f_auto,fl_lossy,dpr_1.1/w_620/classic-11-12-handbag-blue-washed-denim-gold-tone-metal-washed-denim-gold-tone-metal-packshot-artistique-vue2-a01112b16747nx158-9539462692894.jpg",
+//   "image3": "https://www.chanel.com/images//t_one///q_auto:good,f_auto,fl_lossy,dpr_1.1/w_620/classic-11-12-handbag-blue-washed-denim-gold-tone-metal-washed-denim-gold-tone-metal-packshot-artistique-vue2-a01112b16747nx158-9539462692894.jpg"
+// }
 router.post('/api/image', (req, res) => {
   const { bagId, bagname, image1, image2, image3 } = req.body;
 
@@ -354,9 +434,15 @@ router.post('/api/image', (req, res) => {
   );
 });
 
-// Assuming you have initialized your express app and set up your database connection
-
-// DELETE request to delete both bag and image
+// Testing to delete specific image and bag by bagid
+// method: delete
+// URL: http://localhost:3001/api/bag/
+//
+// Test 1
+// URL: http://localhost:3001/api/bag/018809
+//
+// Test 2
+// URL: http://localhost:3001/api/bag/038809
 router.delete('/api/bag/:bagId', (req, res) => {
   const bagId = req.params.bagId;
 
@@ -387,12 +473,34 @@ router.delete('/api/bag/:bagId', (req, res) => {
   );
 });
 
-// Update bag
+// Testing to update bag
+// method: put
+// URL: http://localhost:3001/api/bag
+//
+// Test 1
+// URL: http://localhost:3001/api/bag/388029
+// {
+//   "productName": "Update Bag Name",
+//   "productCategory": "Handbag",
+//   "productColor": "White",
+//   "productPrice": 100.00,
+//   "productStock": 10,
+//   "productDescription": "Description of the new bag"
+// }
+// 
+// Test 2
+// {
+//   "productName": "Update Bag Name22222222",
+//   "productCategory": "Handbag",
+//   "productColor": "White",
+//   "productPrice": 100.00,
+//   "productStock": 10,
+//   "productDescription": "Description of the new bag"
+//   }
 router.put('/api/bag/:id', (req, res) => {
   const { id } = req.params;
   const { productName, productCategory, productColor, productPrice, productStock, productDescription } = req.body;
 
-  // Update product details in the database
   connection.query(
     'UPDATE Bag SET BagName=?, BagCategory=?, BagColor=?, BagPrice=?, BagStock=?, BagDescription=? WHERE BagID=?',
     [productName, productCategory, productColor, productPrice, productStock, productDescription, id],
@@ -407,12 +515,33 @@ router.put('/api/bag/:id', (req, res) => {
   );
 });
 
-// Update images
+// Testing to update image in database
+// method: PUT
+// URL: http://localhost:3001/api/image
+//
+// Test 1
+// URL: http://localhost:3001/api/image/38829
+// {
+//   "bagId": 38829,
+//   "bagname": "New Bag Name",
+//   "image1": "https://www.chanel.com/images//t_one///q_auto:good,f_auto,fl_lossy,dpr_1.1/w_620/classic-11-12-handbag-blue-washed-denim-gold-tone-metal-washed-denim-gold-tone-metal-packshot-artistique-vue2-a01112b16747nx158-9539462692894.jpg",
+//   "image2": "https://www.chanel.com/images//t_one///q_auto:good,f_auto,fl_lossy,dpr_1.1/w_620/classic-11-12-handbag-blue-washed-denim-gold-tone-metal-washed-denim-gold-tone-metal-packshot-artistique-vue2-a01112b16747nx158-9539462692894.jpg",
+//   "image3": "https://www.chanel.com/images//t_one///q_auto:good,f_auto,fl_lossy,dpr_1.1/w_620/classic-11-12-handbag-blue-washed-denim-gold-tone-metal-washed-denim-gold-tone-metal-packshot-artistique-vue2-a01112b16747nx158-9539462692894.jpg"
+// }
+// 
+// Test 2
+// URL: http://localhost:3001/search_api_query/012202
+// {
+//   "bagId": 38830,
+//   "bagname": "New Bag Name",
+//   "image1": "https://www.chanel.com/images//t_one///q_auto:good,f_auto,fl_lossy,dpr_1.1/w_620/classic-11-12-handbag-blue-washed-denim-gold-tone-metal-washed-denim-gold-tone-metal-packshot-artistique-vue2-a01112b16747nx158-9539462692894.jpg",
+//   "image2": "https://www.chanel.com/images//t_one///q_auto:good,f_auto,fl_lossy,dpr_1.1/w_620/classic-11-12-handbag-blue-washed-denim-gold-tone-metal-washed-denim-gold-tone-metal-packshot-artistique-vue2-a01112b16747nx158-9539462692894.jpg",
+//   "image3": "https://www.chanel.com/images//t_one///q_auto:good,f_auto,fl_lossy,dpr_1.1/w_620/classic-11-12-handbag-blue-washed-denim-gold-tone-metal-washed-denim-gold-tone-metal-packshot-artistique-vue2-a01112b16747nx158-9539462692894.jpg"
+// }
 router.put('/api/image/:bagId', (req, res) => {
   const { bagId } = req.params;
   const { image1, image2, image3 } = req.body;
 
-  // Update images in the database
   connection.query(
     'UPDATE Images SET image_data1=?, image_data2=?, image_data3=? WHERE BagID=?',
     [image1, image2, image3, bagId],
