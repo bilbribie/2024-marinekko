@@ -9,7 +9,6 @@ const router = express();
 router.use(bodyParser.json());
 router.use(cors());
 
-// This is needed for POST method
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
@@ -36,7 +35,10 @@ router.get('/', (req, res) => {
 // ;-;
 /* ------------------ Product web services ----------------------- */
 
-// to receive all bags from Marinekko datatbase
+// Testing to receive all bag in Database
+// method: get
+// URL: http://localhost:3001/api/bag
+//
 router.get('/api/bag', (req, res) => {
   connection.query('SELECT * FROM Bag', (error, results) => {
     if (error) {
@@ -47,7 +49,12 @@ router.get('/api/bag', (req, res) => {
   });
 });
 
-// to receive specific bag from Marinekko datatbase
+
+// Testing to receive specific bag in Database
+// method: get
+// URL: http://localhost:3001/api/bag
+//
+// BagId: 18801
 router.get('/api/bag/:id', (req, res) => {
   const bagId = req.params.id;
 
@@ -69,7 +76,31 @@ router.get('/api/bag/:id', (req, res) => {
   });
 });
 
-// to query search bag in Marinekko datatbase
+// Testing to query bag in Database
+// method: get
+// URL: http://localhost:3001/search_api_query
+//
+// Test 1
+// {
+//   "BagID": 18801,
+//   "BagName": "PILLOW WEEKENDER TAIFUUNI",
+//   "BagCategory": "Shoulder Bag",
+//   "BagColor": "Pink",
+//   "BagPrice": "9900.00",
+//   "BagStock": 32,
+//   "BagDescription": "The padded Pillow Weekender bag is made of recycled polyester and it features the topstitched Taifuuni pattern. The quilted bag has padded handles and a long, padded shoulder strap that can be tied to the right length. The bag closes with a zipper and has a zipper pocket on the inside. The Marimekko “M” is embroidered on the front. SIZE Height: 33.00 cm Width: 45.00 cm Depth: 19.50 cm Main Material: 100 % Polyester"
+// }
+
+// Test 2
+// {
+//   "BagID": 18803,
+//   "BagName": "CARRIER MIDI UNIKKO",
+//   "BagCategory": "Tote Bag",
+//   "BagColor": "Orange",
+//   "BagPrice": "4410.00",
+//   "BagStock": 23,
+//   "BagDescription": "The Carrier Midi tote bag is made of an unbleached cotton and linen blend, and it features the large Unikko pattern flower, which is printed in Helsinki. The \"Unikko 60th anniversary\" printed cotton straps run along the sides of the bag to form the handles. This product includes 46% recycled cotton and 21% recycled linen. This product celebrates the 60th anniversary of the Unikko pattern. SIZE Height: 43.00 cm Width: 41.00 cm Strap length: 54.00 cm Main Material: 79 % Cotton, 21 % Linen"
+// }
 router.get('/search_api_query', (req, res) => {
   let query = 'SELECT * FROM Bag WHERE 1=1';
   const params = [];
@@ -101,6 +132,21 @@ router.get('/search_api_query', (req, res) => {
   });
 });
 
+// Testing to query bag in Database
+// method: get
+// URL: http://localhost:3001/search_api_query
+//
+// Test 1
+// {
+//   "username": "Admin_John",
+//   "password": "AdminJohnd22"
+// }
+
+// Test 2
+// {
+//   "username": "Admin_John",
+//   "password": "AdminJohnd22"
+// }
 router.post('/api/login', (req, res) => {
   const { username, password } = req.body;
   connection.query(
@@ -108,7 +154,7 @@ router.post('/api/login', (req, res) => {
     [username, password],
     (error, results) => {
       if (error) {
-        return res.status(500).json({ error: error.message }); // Fixing the error handling here
+        return res.status(500).json({ error: error.message }); 
       }
       if (results.length > 0) {
         console.log(`Login attempt with username: ${username} and password: ${password}`);
@@ -139,7 +185,7 @@ router.post('/api/adminaccount', (req, res) => {
 
   connection.query(insertQuery, [username, firstName, lastName, email, password], (error, results) => {
     if (error) {
-      console.error('Error adding new admin:', error.message); // Log the error message
+      console.error('Error adding new admin:', error.message); 
       return res.status(500).json({ error: 'Internal Server Error', message: error.message });
     }
 
@@ -193,7 +239,7 @@ router.put('/api/adminaccount/:adminId', (req, res) => {
 router.delete('/api/adminaccount/:adminId', (req, res) => {
   const { adminId } = req.params;
 
-  console.log(`Attempting to delete admin with ID: ${adminId}`); // Log the attempt
+  console.log(`Attempting to delete admin with ID: ${adminId}`); 
 
   // First, delete associated records in the LoginHistory table
   const deleteLoginHistoryQuery = 'DELETE FROM LoginHistory WHERE AdminID = ?';

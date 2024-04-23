@@ -10,7 +10,7 @@ function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');  // Define error state
+  const [error, setError] = useState(''); 
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -31,16 +31,16 @@ function Login() {
     .then(data => {
       if (data.message === 'Login successful') {
         console.log('Login successful', data.user);
-        localStorage.setItem('isLoggedIn', 'true'); // Store login state
+        localStorage.setItem('isLoggedIn', 'true'); 
         navigate('/login-success'); // d
       } else {
         console.error('Login failed');
-        setError('Login Failed: ' + data.message);  // Set error message
+        setError('Login Failed: ' + data.message);  
       }
     })
     .catch(error => {
       console.error('Error:', error);
-      setError('Login Failed: ' + error.message);  // Set error message
+      setError('Login Failed: ' + error.message); 
     });
   };
 

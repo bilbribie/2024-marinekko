@@ -21,7 +21,6 @@ function EditProduct() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch product details
     fetch(`http://localhost:3001/api/bag/${id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -35,17 +34,14 @@ function EditProduct() {
         });
       });
 
-    // Fetch product images
     fetch(`http://localhost:3001/api/image/${id}`)
       .then((res) => res.json())
       .then((imagesData) => {
         console.log("imagesData:", imagesData);
 
-        // Initialize arrays to store image URLs
         const originalImagesArray = ['', '', ''];
         const newImagesArray = ['', '', ''];
 
-        // Populate the arrays with image URLs if available
         imagesData.forEach((img) => {
           if (img.image_data1) {
             originalImagesArray[0] = img.image_data1;
@@ -61,7 +57,6 @@ function EditProduct() {
           }
         });
 
-        // Set the state with the initial image URLs
         setOriginalImages(originalImagesArray);
         setNewImages(newImagesArray);
         setIsLoading(false);
@@ -84,7 +79,6 @@ function EditProduct() {
       [index]: updatedImageUrl
     });
   
-    // Update originalImages if the index is within bounds
     if (index < originalImages.length) {
       setOriginalImages(prevImages => {
         const updatedImages = [...prevImages];
@@ -105,8 +99,7 @@ function EditProduct() {
       productStock: product.productStock,
       productDescription: product.productDescription,
     };
-  
-    // Make the PUT request to update product details
+
     fetch(`http://localhost:3001/api/bag/${id}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
@@ -118,15 +111,13 @@ function EditProduct() {
       return response.json();
     })
     .then(() => {
-      // Update images
       const imageData = {
         bagId: id, 
         image1: newImages[0],
         image2: newImages[1],
         image3: newImages[2],
       };
-  
-      // Make the PUT request to update images
+
       fetch(`http://localhost:3001/api/image/${id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
